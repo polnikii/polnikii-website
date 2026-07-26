@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>polnikii — Web Designer, Minecraft & Bot Developer</title>
+    <meta name="description" content="Портфолио polnikii: веб-дизайн, разработка плагинов и сборок Minecraft, Telegram и Discord боты, тех. администрирование игровых серверов.">
+    
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        heading: ['Outfit', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        apple: {
+                            bg: '#000000',
+                            card: 'rgba(22, 22, 26, 0.65)',
+                            cardBorder: 'rgba(255, 255, 255, 0.08)',
+                            accent: '#2997ff',
+                            accentGlow: 'rgba(41, 151, 255, 0.25)',
+                            textSecondary: '#86868b',
+                        }
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.36)',
+                        'glow': '0 0 30px rgba(41, 151, 255, 0.2)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden !important;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* ═══════════════════════════════════════════════════
+           Liquid Glass — переиспользуемый эффект «жидкого стекла»
+           ═══════════════════════════════════════════════════ */
+        :root {
+            /* ═══ Базовая стеклянная поверхность ═══ */
+            --glass-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+                inset 1.8px 3px 0px -2px rgba(255, 255, 255, 0.27),
+                inset -2px -2px 0px -2px rgba(255, 255, 255, 0.24),
+                inset -3px -8px 1px -6px rgba(255, 255, 255, 0.18),
+                inset -0.3px -1px 4px 0px rgba(0, 0, 0, 0.24),
+                inset -1.5px 2.5px 0px -2px rgba(0, 0, 0, 0.4),
+                inset 0px 3px 4px -2px rgba(0, 0, 0, 0.4),
+                inset 2px -6.5px 1px -4px rgba(0, 0, 0, 0.2),
+                0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+                0px 6px 16px 0px rgba(0, 0, 0, 0.16);
+
+            /* ═══ Активное / нажатое состояние (табы, сегменты) ═══ */
+            --glass-shadow-active:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+                inset 1px 1px 0 0 rgba(255, 255, 255, 0.15),
+                inset -1px -1px 0 0 rgba(255, 255, 255, 0.1),
+                0 2px 4px rgba(0, 0, 0, 0.15);
+
+            /* ═══ Ползунок-индикатор (сегментированный переключатель) ═══ */
+            --glass-shadow-indicator:
+                inset 0 0 0 1px #ffffff08,
+                inset 2px 1px 0 -1px #ffffff45,
+                inset -1.5px -1px 0 -1px #ffffff3d,
+                inset -2px -6px 1px -5px #ffffff2e,
+                inset -1px 2px 3px -1px #0006,
+                inset 0 -4px 1px -2px #0003,
+                0 3px 6px #00000029;
+        }
+
+        .glass {
+            box-shadow: var(--glass-shadow);
+        }
+
+        .glass-active {
+            box-shadow: var(--glass-shadow-active);
+        }
+
+        .glass-indicator {
+            box-shadow: var(--glass-shadow-indicator);
+        }
+
+        /* Glassmorphism Dark Apple Aesthetic */
+        .apple-glass {
+            background: rgba(22, 22, 26, 0.65);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .apple-card-hover {
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.35s ease, 
+                        box-shadow 0.35s ease;
+        }
+
+        .apple-card-hover:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: rgba(255, 255, 255, 0.18);
+            box-shadow: var(--glass-shadow-indicator);
+        }
+
+        /* Ambient Glow Backgrounds */
+        .ambient-glow-1 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(41, 151, 255, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ambient-glow-2 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+            bottom: 10%;
+            right: -100px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #26262a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46;
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans antialiased selection:bg-blue-500 selection:text-white transition-colors duration-300 relative overflow-x-hidden min-h-screen">
+
+    <!-- Bottom-Left Liquid Glass Toggle Button with SVG Icon -->
+    <button onclick="toggleKonataGif()" id="konata-toggle-btn" title="Переключить анимацию" class="fixed left-4 sm:left-6 bottom-4 sm:bottom-6 z-40 px-3.5 py-2.5 rounded-full apple-glass glass glass-indicator text-white hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 border border-white/10 shadow-2xl">
+        <div class="w-6 h-6 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center glass-indicator">
+            <!-- SVG Eye / Visibility Icon -->
+            <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            </svg>
+        </div>
+        <span class="text-xs font-medium text-neutral-300 hover:text-white">Анимация</span>
+    </button>
+
+    <!-- Translucent Konata Animated GIF Container (Right Corner) -->
+    <div id="konata-container" class="fixed right-2 sm:right-6 bottom-0 z-30 hidden md:block pointer-events-none">
+        <img id="konata-gif" src="3319965.gif" alt="Konata Izumi GIF" class="h-[27vh] max-h-[260px] object-contain object-bottom opacity-30 pointer-events-none">
+    </div>
+
+    <!-- Ambient Glow Effects -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed top-24 right-4 sm:right-6 z-50 transform translate-y-[-20px] opacity-0 pointer-events-none transition-all duration-300 ease-out apple-glass glass px-5 py-3.5 rounded-2xl flex items-center gap-3 max-w-[calc(100vw-2rem)]">
+        <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+        <span id="toast-text" class="text-sm font-medium text-white truncate">Скопировано в буфер обмена</span>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-40 px-3 sm:px-8 py-3 sm:py-4 transition-all duration-300">
+        <div class="w-full max-w-6xl mx-auto apple-glass glass rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2">
+            <!-- Brand Logo with Avatar Image -->
+            <a href="#" class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 group">
+                <img src="konata.jpg" alt="polnikii avatar" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover border border-white/20 glass-indicator group-hover:scale-105 transition-transform">
+                <span class="font-heading font-bold text-base sm:text-lg tracking-tight text-white group-hover:text-blue-400 transition-colors">
+                    polnikii<span class="text-blue-500">.</span>
+                </span>
+            </a>
+
+            <!-- Desktop Nav Links (Hidden on Mobile & Tablet) -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-neutral-400">
+                <a href="#about" class="hover:text-white transition-colors">Обо мне</a>
+                <a href="#services" class="hover:text-white transition-colors">Услуги</a>
+                <a href="#portfolio" class="hover:text-white transition-colors">Портфолио</a>
+                <a href="#calculator" class="hover:text-white transition-colors">Калькулятор</a>
+                <a href="#contact" class="hover:text-white transition-colors">Контакты</a>
+            </nav>
+
+            <!-- Actions Desktop -->
+            <div class="hidden lg:flex items-center gap-3">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium glass">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Свободен для заказов</span>
+                </div>
+                <a href="#contact" class="px-4 py-2 rounded-full bg-white text-black font-semibold text-xs sm:text-sm hover:bg-neutral-200 transition-all hover:scale-105 active:scale-95 glass-indicator">
+                    Связаться
+                </a>
+            </div>
+
+            <!-- Mobile & Tablet Burger Button (Visible on Mobile & Tablet) -->
+            <button onclick="toggleMobileMenu()" id="burger-btn" aria-label="Открыть меню" class="lg:hidden p-2 rounded-full apple-glass glass-indicator text-white hover:bg-white/10 transition-all flex items-center justify-center border border-white/10 flex-shrink-0">
+                <!-- Burger Icon -->
+                <svg id="burger-icon" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+                <!-- Close Icon -->
+                <svg id="close-icon" class="w-5 h-5 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile / Tablet Liquid Glass Dropdown Menu -->
+    <div id="mobile-menu" class="fixed left-4 right-4 top-16 sm:top-20 z-40 lg:hidden apple-glass glass rounded-3xl p-5 sm:p-6 border border-white/15 shadow-2xl opacity-0 pointer-events-none scale-95 transition-all duration-300 ease-out flex flex-col space-y-5 backdrop-blur-2xl max-w-[calc(100vw-2rem)] mx-auto">
+        <!-- Status Badge -->
+        <div class="flex items-center justify-between pb-3.5 border-b border-white/10">
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium glass">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Свободен для заказов</span>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex flex-col space-y-3 text-base font-semibold text-neutral-300">
+            <a href="#about" onclick="closeMobileMenu()" class="p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all flex items-center justify-between">
+                <span>Обо мне</span>
+                <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+            <a href="#services" onclick="closeMobileMenu()" class="p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all flex items-center justify-between">
+                <span>Услуги</span>
+                <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+            <a href="#portfolio" onclick="closeMobileMenu()" class="p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all flex items-center justify-between">
+                <span>Портфолио</span>
+                <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+            <a href="#calculator" onclick="closeMobileMenu()" class="p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all flex items-center justify-between">
+                <span>Калькулятор</span>
+                <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+            <a href="#contact" onclick="closeMobileMenu()" class="p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all flex items-center justify-between">
+                <span>Контакты</span>
+                <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </a>
+        </nav>
+
+        <!-- Primary Action Button -->
+        <a href="#contact" onclick="closeMobileMenu()" class="w-full py-3 rounded-2xl bg-white text-black font-bold text-center text-sm transition-all hover:bg-neutral-200 glass-indicator">
+            Связаться
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-28 sm:pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-24 sm:space-y-32 relative z-10 overflow-x-hidden">
+
+        <!-- Hero Section -->
+        <section id="about" class="relative pt-8 sm:pt-12 pb-8 flex flex-col items-center text-center space-y-6 sm:space-y-8">
+            <!-- Top Tagline Badge -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full apple-glass glass text-[11px] sm:text-xs font-medium text-neutral-300 border border-white/10 shadow-sm animate-pulse-slow">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+                <span>Цифровой дизайн &amp; ИТ-разработка</span>
+            </div>
+
+            <!-- Big Headline -->
+            <div class="space-y-4 sm:space-y-5 max-w-4xl">
+                <h1 class="text-3xl sm:text-6xl md:text-7xl font-heading font-extrabold tracking-tight text-white leading-[1.15] break-words">
+                    Премиальный <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">веб-дизайн</span>, 
+                    разработка <span class="bg-gradient-to-r from-emerald-400 to-teal-200 bg-clip-text text-transparent">Minecraft</span> &amp; ботов.
+                </h1>
+                <p class="text-base sm:text-xl text-neutral-400 font-normal max-w-2xl mx-auto leading-relaxed px-2">
+                    Привет! Я <strong class="text-white font-semibold">polnikii</strong>. Проектирую интерфейсы в Figma, пишу кастомные плагины для Minecraft, создаю Telegram &amp; Discord ботов и администрирую сервера.
+                </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-3.5 pt-2 w-full sm:w-auto">
+                <a href="#portfolio" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm sm:text-base transition-all hover:shadow-glow hover:scale-105 active:scale-95 glass-indicator flex items-center justify-center gap-2">
+                    <span>Смотреть работы</span>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+                <a href="#calculator" class="w-full sm:w-auto px-7 py-3.5 rounded-full apple-glass glass hover:bg-white/10 text-white font-medium text-sm sm:text-base transition-all hover:scale-105 active:scale-95 border border-white/15 flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    <span>Рассчитать стоимость</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Services Section (Compact Liquid Glass Bento Grid) -->
+        <section id="services" class="space-y-8 sm:space-y-12">
+            <div class="space-y-2.5 text-center sm:text-left">
+                <span class="text-xs font-semibold uppercase tracking-wider text-blue-400">Направления работы</span>
+                <h2 class="text-3xl sm:text-5xl font-heading font-bold text-white tracking-tight">Мои специализации</h2>
+                <p class="text-neutral-400 text-sm sm:text-base max-w-xl">Каждое решение создается с акцентом на высокую производительность, аккуратность и внимание к деталям.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+
+                <!-- Service 1: Web Design -->
+                <div class="apple-glass glass p-5 rounded-3xl apple-card-hover flex flex-col justify-between space-y-4 relative overflow-hidden group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center glass-indicator">
+                                <!-- Palette Icon SVG -->
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                                </svg>
+                            </div>
+                            <span class="text-[11px] font-semibold font-mono text-blue-400 px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 glass">от 1 500 ₽</span>
+                        </div>
+                        <h3 class="text-lg font-heading font-bold text-white">Веб-Дизайн</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed">
+                            Дизайн UI/UX, макетов Figma, лендингов и сайтов.
+                        </p>
+                    </div>
+
+                    <!-- Tech Stack Pills -->
+                    <div class="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">UI/UX</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">Figma</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">Макеты</span>
+                    </div>
+                </div>
+
+                <!-- Service 2: Minecraft Modpacks & Plugins -->
+                <div class="apple-glass glass p-5 rounded-3xl apple-card-hover flex flex-col justify-between space-y-4 relative overflow-hidden group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center glass-indicator">
+                                <!-- Minecraft Cube Icon SVG -->
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                </svg>
+                            </div>
+                            <span class="text-[11px] font-semibold font-mono text-emerald-400 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 glass">от 1 000 ₽</span>
+                        </div>
+                        <h3 class="text-lg font-heading font-bold text-white">Minecraft Проекты</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed">
+                            Плагины (Paper/Spigot), кастомная экономика и сборки.
+                        </p>
+                    </div>
+
+                    <!-- Tech Stack Pills -->
+                    <div class="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">Paper API</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">Java</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">TPS 20.0</span>
+                    </div>
+                </div>
+
+                <!-- Service 3: Telegram & Discord Bots -->
+                <div class="apple-glass glass p-5 rounded-3xl apple-card-hover flex flex-col justify-between space-y-4 relative overflow-hidden group">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center glass-indicator">
+                                <!-- Bot Terminal Icon SVG -->
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-[11px] font-semibold font-mono text-purple-400 px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 glass">от 500 ₽</span>
+                        </div>
+                        <h3 class="text-lg font-heading font-bold text-white">Telegram &amp; Discord Боты</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed">
+                            Боты для продаж, модерации, тикетов и работы с БД.
+                        </p>
+                    </div>
+
+                    <!-- Tech Stack Pills -->
+                    <div class="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">Aiogram 3</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">Discord.js</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">Python</span>
+                    </div>
+                </div>
+
+                <!-- Service 4: Minecraft Tech Admin -->
+                <div class="apple-glass glass p-5 rounded-3xl apple-card-hover flex flex-col justify-between space-y-4 relative overflow-hidden group border-amber-500/20">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center glass-indicator">
+                                <!-- Server Wrench Icon SVG -->
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-[11px] font-semibold font-mono text-amber-400 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 glass">40% с доната</span>
+                        </div>
+                        <h3 class="text-lg font-heading font-bold text-white">Тех. Админ Minecraft</h3>
+                        <p class="text-neutral-400 text-xs leading-relaxed">
+                            Сопровождение сервера, защита, TPS 20.0 и фикс багов.
+                        </p>
+                    </div>
+
+                    <!-- Tech Stack Pills -->
+                    <div class="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">Поддержка</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">Мониторинг</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">40% Доход</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Portfolio Section (Dynamic Dynamic Vignette Fade Overlays) -->
+        <section id="portfolio" class="space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div class="space-y-3">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-blue-400">Портфолио</span>
+                    <h2 class="text-3xl sm:text-5xl font-heading font-bold text-white tracking-tight">Реализованные проекты</h2>
+                </div>
+
+                <div class="flex items-center gap-4 self-start md:self-auto flex-wrap">
+                    <!-- Category Filters -->
+                    <div class="flex flex-wrap gap-1.5 p-1.5 rounded-full apple-glass glass border border-white/10">
+                        <button onclick="filterPortfolio('all')" id="btn-all" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold transition-all bg-white text-black shadow-sm glass-indicator">Все</button>
+                        <button onclick="filterPortfolio('web')" id="btn-web" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold text-neutral-400 hover:text-white transition-all">Веб-дизайн</button>
+                        <button onclick="filterPortfolio('minecraft')" id="btn-minecraft" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold text-neutral-400 hover:text-white transition-all">Minecraft</button>
+                        <button onclick="filterPortfolio('bots')" id="btn-bots" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold text-neutral-400 hover:text-white transition-all">Боты</button>
+                    </div>
+
+                    <!-- Carousel Nav Arrows -->
+                    <div class="flex items-center gap-2">
+                        <button onclick="scrollPortfolio(-1)" aria-label="Предыдущий слайд" class="p-2.5 rounded-full apple-glass glass-indicator text-neutral-300 hover:text-white hover:bg-white/10 transition-all border border-white/10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        </button>
+                        <button onclick="scrollPortfolio(1)" aria-label="Следующий слайд" class="p-2.5 rounded-full apple-glass glass-indicator text-neutral-300 hover:text-white hover:bg-white/10 transition-all border border-white/10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Black Side Vignettes (Fades out when at 0 or max scroll) -->
+            <div class="relative w-full overflow-hidden">
+                <!-- Left Black Vignette Overlay -->
+                <div id="carousel-fade-left" class="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-black via-black/80 to-transparent z-20 opacity-0 transition-opacity duration-300"></div>
+
+                <!-- Right Black Vignette Overlay -->
+                <div id="carousel-fade-right" class="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-black via-black/80 to-transparent z-20 opacity-100 transition-opacity duration-300"></div>
+
+                <!-- Clean Carousel Track -->
+                <div id="portfolio-container" class="flex overflow-x-auto snap-x snap-mandatory gap-5 sm:gap-6 py-4 px-1 sm:px-2 scroll-smooth no-scrollbar cursor-grab select-none relative z-10" style="scrollbar-width: none; -ms-overflow-style: none;">
+                    <!-- Project cards render dynamically here via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Price & Time Order Calculator Section -->
+        <section id="calculator" class="space-y-8">
+            <div class="space-y-3 text-center sm:text-left">
+                <span class="text-xs font-semibold uppercase tracking-wider text-blue-400">Калькулятор проекта</span>
+                <h2 class="text-3xl sm:text-5xl font-heading font-bold text-white tracking-tight">Рассчитай свой проект</h2>
+                <p class="text-neutral-400 text-base max-w-xl">Отметь нужные опции, чтобы получить ориентировочную стоимость и срок выполнения.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Interactive Form Controls -->
+                <div class="lg:col-span-2 space-y-6">
+
+                    <!-- Category Selection -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-semibold text-white">1. Тип работы:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="calc-type" value="web" checked onchange="updateCalc()" class="peer hidden">
+                                <div class="p-3 sm:p-3.5 rounded-2xl apple-glass glass border border-white/10 peer-checked:border-blue-500 peer-checked:bg-blue-500/10 text-center transition-all peer-checked:glass-indicator">
+                                    <div class="text-xs font-semibold text-white">Веб-дизайн</div>
+                                    <div class="text-[11px] text-neutral-400 mt-1">от 1 500 ₽</div>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="calc-type" value="minecraft" onchange="updateCalc()" class="peer hidden">
+                                <div class="p-3 sm:p-3.5 rounded-2xl apple-glass glass border border-white/10 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/10 text-center transition-all peer-checked:glass-indicator">
+                                    <div class="text-xs font-semibold text-white">Minecraft</div>
+                                    <div class="text-[11px] text-neutral-400 mt-1">от 1 000 ₽</div>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="calc-type" value="bot" onchange="updateCalc()" class="peer hidden">
+                                <div class="p-3 sm:p-3.5 rounded-2xl apple-glass glass border border-white/10 peer-checked:border-purple-500 peer-checked:bg-purple-500/10 text-center transition-all peer-checked:glass-indicator">
+                                    <div class="text-xs font-semibold text-white">Боты</div>
+                                    <div class="text-[11px] text-neutral-400 mt-1">от 500 ₽</div>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="calc-type" value="techadmin" onchange="updateCalc()" class="peer hidden">
+                                <div class="p-3 sm:p-3.5 rounded-2xl apple-glass glass border border-white/10 peer-checked:border-amber-500 peer-checked:bg-amber-500/10 text-center transition-all peer-checked:glass-indicator">
+                                    <div class="text-xs font-semibold text-white">Тех. Админ</div>
+                                    <div class="text-[11px] text-amber-400 mt-1">40% с доната</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Custom Liquid Glass Checkboxes -->
+                    <div class="space-y-3">
+                        <label class="text-sm font-semibold text-white">2. Дополнительные опции:</label>
+                        <div class="space-y-2.5">
+
+                            <!-- Option 1 -->
+                            <label class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl apple-glass glass border border-white/10 cursor-pointer hover:bg-white/5 transition-all group">
+                                <div class="flex items-center gap-3">
+                                    <div class="relative flex items-center justify-center flex-shrink-0">
+                                        <input type="checkbox" id="opt-fast" onchange="updateCalc()" class="peer hidden">
+                                        <div class="w-5 h-5 rounded-lg border border-white/20 apple-glass glass-indicator peer-checked:bg-blue-600 peer-checked:border-blue-500 flex items-center justify-center transition-all">
+                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs sm:text-sm font-medium text-white group-hover:text-blue-300 transition-colors">Срочное выполнение</div>
+                                        <div class="text-[11px] sm:text-xs text-neutral-400">Приоритетная разработка за 24 часа</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono text-blue-400 font-semibold px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 glass flex-shrink-0 ml-2">+35%</span>
+                            </label>
+
+                            <!-- Option 2 -->
+                            <label class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl apple-glass glass border border-white/10 cursor-pointer hover:bg-white/5 transition-all group">
+                                <div class="flex items-center gap-3">
+                                    <div class="relative flex items-center justify-center flex-shrink-0">
+                                        <input type="checkbox" id="opt-db" onchange="updateCalc()" class="peer hidden">
+                                        <div class="w-5 h-5 rounded-lg border border-white/20 apple-glass glass-indicator peer-checked:bg-emerald-600 peer-checked:border-emerald-500 flex items-center justify-center transition-all">
+                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs sm:text-sm font-medium text-white group-hover:text-emerald-300 transition-colors">Интеграция с Базой Данных / API</div>
+                                        <div class="text-[11px] sm:text-xs text-neutral-400">MySQL, PostgreSQL, внешние сервисы</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono text-emerald-400 font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 glass flex-shrink-0 ml-2">+1 500 ₽</span>
+                            </label>
+
+                            <!-- Option 3 -->
+                            <label class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl apple-glass glass border border-white/10 cursor-pointer hover:bg-white/5 transition-all group">
+                                <div class="flex items-center gap-3">
+                                    <div class="relative flex items-center justify-center flex-shrink-0">
+                                        <input type="checkbox" id="opt-support" onchange="updateCalc()" class="peer hidden">
+                                        <div class="w-5 h-5 rounded-lg border border-white/20 apple-glass glass-indicator peer-checked:bg-purple-600 peer-checked:border-purple-500 flex items-center justify-center transition-all">
+                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs sm:text-sm font-medium text-white group-hover:text-purple-300 transition-colors">Техподдержка &amp; Хостинг (1 месяц)</div>
+                                        <div class="text-[11px] sm:text-xs text-neutral-400">Настройка сервера, деплой и правки</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-mono text-purple-400 font-semibold px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 glass flex-shrink-0 ml-2">+1 000 ₽</span>
+                            </label>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Calculator Summary Card -->
+                <div class="apple-glass glass p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between space-y-6">
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                            <span class="text-sm font-semibold text-neutral-300">Расчет стоимости</span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div>
+                                <div class="text-xs text-neutral-400 uppercase tracking-wider">Примерная цена</div>
+                                <div id="calc-price" class="text-3xl sm:text-4xl font-heading font-extrabold text-white mt-1">от 1 500 ₽</div>
+                            </div>
+
+                            <div>
+                                <div class="text-xs text-neutral-400 uppercase tracking-wider">Срок выполнения</div>
+                                <div id="calc-days" class="text-lg sm:text-xl font-heading font-semibold text-blue-400 mt-1">1–3 дня</div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-white/5 border border-white/5 text-xs text-neutral-400 space-y-2 glass">
+                            <div class="flex items-center gap-2 text-white font-medium">
+                                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span>Гарантия качества</span>
+                            </div>
+                            <p>Цена ориентировочная. Точная стоимость рассчитывается индивидуально в зависимости от ТЗ.</p>
+                        </div>
+                    </div>
+
+                    <button onclick="sendCalcToTelegram()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all hover:shadow-glow hover:scale-105 active:scale-95 glass-indicator flex items-center justify-center gap-2">
+                        <!-- Telegram Icon -->
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.03 9.56c-.15.68-.56.84-1.13.53l-3.1-2.28-1.5 1.44c-.16.16-.3.3-.61.3l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12.01-4.63c.56-.21 1.04.13.88.83z"/></svg>
+                        <span>Заказать в Telegram</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Grid Section -->
+        <section class="space-y-8">
+            <div class="text-center space-y-3">
+                <span class="text-xs font-semibold uppercase tracking-wider text-blue-400">Стек технологий</span>
+                <h2 class="text-3xl sm:text-4xl font-heading font-bold text-white tracking-tight">Инструменты &amp; Языки</h2>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-4">
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                    <div class="text-blue-400 font-mono text-xs sm:text-sm font-bold">HTML &amp; CSS</div>
+                    <div class="text-[11px] sm:text-xs text-neutral-400">Tailwind / Flexbox</div>
+                </div>
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                    <div class="text-amber-400 font-mono text-xs sm:text-sm font-bold">JavaScript</div>
+                    <div class="text-[11px] sm:text-xs text-neutral-400">ES6+ / Async</div>
+                </div>
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                    <div class="text-emerald-400 font-mono text-xs sm:text-sm font-bold">Java</div>
+                    <div class="text-[11px] sm:text-xs text-neutral-400">Spigot / Paper API</div>
+                </div>
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                    <div class="text-purple-400 font-mono text-xs sm:text-sm font-bold">Python</div>
+                    <div class="text-[11px] sm:text-xs text-neutral-400">Aiogram 3 / Asyncio</div>
+                </div>
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                    <div class="text-indigo-400 font-mono text-xs sm:text-sm font-bold">Node.js</div>
+                    <div class="text-[11px] sm:text-xs text-neutral-400">Discord.js</div>
+                </div>
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                    <div class="text-rose-400 font-mono text-xs sm:text-sm font-bold">Figma</div>
+                    <div class="text-[11px] sm:text-xs text-neutral-400">UI / UX Prototyping</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="apple-glass glass p-6 sm:p-12 rounded-3xl border border-white/10 relative overflow-hidden text-center space-y-6 sm:space-y-8">
+            <div class="max-w-2xl mx-auto space-y-3 sm:space-y-4">
+                <span class="text-xs font-semibold uppercase tracking-wider text-blue-400">Связь со мной</span>
+                <h2 class="text-3xl sm:text-5xl font-heading font-bold text-white tracking-tight">Готовы начать проект?</h2>
+                <p class="text-neutral-400 text-sm sm:text-base">
+                    Напишите мне в Telegram или Discord для обсуждения идеи, ТЗ и сроков выполнения. Отвечаю быстро!
+                </p>
+            </div>
+
+            <!-- Contact Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 max-w-3xl mx-auto pt-2 sm:pt-4">
+
+                <!-- Telegram Card -->
+                <a href="https://t.me/polnikii" target="_blank" rel="noopener noreferrer" class="p-5 sm:p-6 rounded-2xl bg-white/5 hover:bg-blue-500/10 border border-white/10 hover:border-blue-500/30 transition-all apple-card-hover glass flex flex-col items-center space-y-3 group">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform glass-indicator">
+                        <!-- Telegram Icon -->
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.03 9.56c-.15.68-.56.84-1.13.53l-3.1-2.28-1.5 1.44c-.16.16-.3.3-.61.3l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12.01-4.63c.56-.21 1.04.13.88.83z"/></svg>
+                    </div>
+                    <div>
+                        <div class="text-sm font-semibold text-white">Telegram</div>
+                        <div class="text-xs text-blue-400 mt-0.5">@polnikii</div>
+                    </div>
+                </a>
+
+                <!-- Discord Card -->
+                <button onclick="copyToClipboard('polnikii', 'Discord тег polnikii скопирован!')" class="p-5 sm:p-6 rounded-2xl bg-white/5 hover:bg-indigo-500/10 border border-white/10 hover:border-indigo-500/30 transition-all apple-card-hover glass flex flex-col items-center space-y-3 group text-center w-full">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center group-hover:scale-110 transition-transform glass-indicator">
+                        <!-- Discord Icon -->
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                    </div>
+                    <div>
+                        <div class="text-sm font-semibold text-white">Discord</div>
+                        <div class="text-xs text-indigo-400 mt-0.5 font-mono">polnikii</div>
+                    </div>
+                </button>
+
+                <!-- GitHub Card -->
+                <a href="https://github.com/polnikii" target="_blank" rel="noopener noreferrer" class="p-5 sm:p-6 rounded-2xl bg-white/5 hover:bg-purple-500/10 border border-white/10 hover:border-purple-500/30 transition-all apple-card-hover glass flex flex-col items-center space-y-3 group">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center group-hover:scale-110 transition-transform glass-indicator">
+                        <!-- GitHub Icon -->
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </div>
+                    <div>
+                        <div class="text-sm font-semibold text-white">GitHub</div>
+                        <div class="text-xs text-purple-400 mt-0.5">github.com/polnikii</div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-neutral-950/80 backdrop-blur-xl py-10 sm:py-12 px-4 sm:px-8 relative z-10 w-full overflow-x-hidden">
+        <div class="max-w-6xl mx-auto space-y-6 sm:space-y-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 sm:pb-8 border-b border-white/10 text-center md:text-left">
+                <!-- Brand & Tagline -->
+                <div class="flex flex-col items-center md:items-start space-y-2">
+                    <a href="#" class="flex items-center gap-2.5">
+                        <img src="konata.jpg" alt="polnikii avatar" class="w-8 h-8 rounded-full object-cover border border-white/20 glass-indicator">
+                        <span class="font-heading font-bold text-xl tracking-tight text-white">
+                            polnikii<span class="text-blue-500">.</span>
+                        </span>
+                    </a>
+                    <p class="text-xs text-neutral-400 max-w-sm">
+                        Веб-дизайн, разработка плагинов Minecraft и ботов для Telegram &amp; Discord.
+                    </p>
+                </div>
+
+                <!-- Footer Quick Nav Links -->
+                <div class="flex flex-wrap justify-center gap-6 sm:gap-8 text-sm text-neutral-400 font-medium">
+                    <a href="#about" class="hover:text-white transition-colors">Обо мне</a>
+                    <a href="#services" class="hover:text-white transition-colors">Услуги</a>
+                    <a href="#portfolio" class="hover:text-white transition-colors">Портфолио</a>
+                    <a href="#calculator" class="hover:text-white transition-colors">Калькулятор</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Контакты</a>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright Bar -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500 text-center sm:text-left">
+                <div>&copy; 2026 polnikii. Все права защищены.</div>
+                <div class="flex items-center gap-4">
+                    <span>Сделано с акцентом на качество и производительность</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Dialog: View Project Details -->
+    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div class="apple-glass glass rounded-3xl border border-white/15 max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl transform scale-95 transition-all duration-300" id="modal-card">
+            <div class="flex items-start justify-between">
+                <div>
+                    <span id="modal-tag" class="px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20 glass">Category</span>
+                    <h3 id="modal-title" class="text-2xl font-heading font-bold text-white mt-2">Title</h3>
+                </div>
+                <button onclick="closeModal()" class="p-2 rounded-full bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white transition-all glass-indicator">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <p id="modal-desc" class="text-neutral-300 text-sm leading-relaxed">
+                Description.
+            </p>
+
+            <div class="space-y-3 pt-2">
+                <div class="text-xs font-semibold text-neutral-400 uppercase tracking-wider">Технологии / Особые черты:</div>
+                <ul id="modal-features" class="space-y-2 text-sm text-neutral-300">
+                    <!-- Feature items -->
+                </ul>
+            </div>
+
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                <button onclick="closeModal()" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-all glass">
+                    Закрыть
+                </button>
+                <a id="modal-link" href="#contact" onclick="closeModal()" class="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition-all glass-indicator flex items-center gap-1.5">
+                    <span>Перейти / Заказать</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // =========================================================================
+        // Mobile / Tablet Burger Menu Toggle Handler
+        // =========================================================================
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (!menu) return;
+
+            const isClosed = menu.classList.contains('opacity-0');
+            if (isClosed) {
+                openMobileMenu();
+            } else {
+                closeMobileMenu();
+            }
+        }
+
+        function openMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const burgerIcon = document.getElementById('burger-icon');
+            const closeIcon = document.getElementById('close-icon');
+            if (!menu) return;
+
+            menu.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+            menu.classList.add('opacity-100', 'scale-100');
+            if (burgerIcon && closeIcon) {
+                burgerIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const burgerIcon = document.getElementById('burger-icon');
+            const closeIcon = document.getElementById('close-icon');
+            if (!menu) return;
+
+            menu.classList.remove('opacity-100', 'scale-100');
+            menu.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+            if (burgerIcon && closeIcon) {
+                burgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        // Close mobile menu if clicked outside
+        document.addEventListener('click', (e) => {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('burger-btn');
+            if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // =========================================================================
+        // Dynamic GIF Positioning relative to Footer & Toggle Handler
+        // =========================================================================
+        function adjustGifPosition() {
+            const container = document.getElementById('konata-container');
+            const footer = document.querySelector('footer');
+            if (!container || !footer || container.style.display === 'none') return;
+
+            const footerRect = footer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (footerRect.top < windowHeight) {
+                const overlap = windowHeight - footerRect.top;
+                container.style.bottom = `${overlap}px`;
+            } else {
+                container.style.bottom = '0px';
+            }
+        }
+
+        function toggleKonataGif() {
+            const container = document.getElementById('konata-container');
+            const btn = document.getElementById('konata-toggle-btn');
+            if (!container) return;
+
+            const isCurrentlyHidden = container.style.display === 'none';
+
+            if (isCurrentlyHidden) {
+                container.style.display = 'block';
+                localStorage.setItem('hide-konata-gif', 'false');
+                if (btn) btn.classList.add('border-blue-500/40', 'bg-blue-500/10');
+                showToast('Анимация включена');
+                adjustGifPosition();
+            } else {
+                container.style.display = 'none';
+                localStorage.setItem('hide-konata-gif', 'true');
+                if (btn) btn.classList.remove('border-blue-500/40', 'bg-blue-500/10');
+                showToast('Анимация выключена');
+            }
+        }
+
+        // Initialize state on load
+        if (localStorage.getItem('hide-konata-gif') === 'true') {
+            const container = document.getElementById('konata-container');
+            if (container) container.style.display = 'none';
+        } else {
+            const btn = document.getElementById('konata-toggle-btn');
+            if (btn) btn.classList.add('border-blue-500/40', 'bg-blue-500/10');
+        }
+
+        window.addEventListener('scroll', adjustGifPosition, { passive: true });
+        window.addEventListener('resize', adjustGifPosition, { passive: true });
+
+        // =========================================================================
+        // ИНСТРУКЦИЯ ПО ДОБАВЛЕНИЮ ПРОЕКТОВ В ПОРТФОЛИО:
+        // Чтобы добавить новый проект, просто вставьте объект проекта в этот массив PROJECTS:
+        // =========================================================================
+
+        const PROJECTS = [
+            {
+                id: 'web-crypto',
+                category: 'web',
+                categoryName: 'Веб-Дизайн',
+                year: '2026',
+                title: 'Crypto Dashboard UI',
+                desc: 'Проектирование темного интерфейса дашборда крипто-биржи в Figma с системой компонентов.',
+                features: ['Figma', 'UI/UX', 'Dark Mode'],
+                link: 'https://t.me/polnikii'
+            },
+            {
+                id: 'mc-rpg-core',
+                category: 'minecraft',
+                categoryName: 'Minecraft Проект',
+                year: '2026',
+                title: 'Custom RPG Core',
+                desc: 'Сборка и кастомный плагин прокачки персонажей, ветки скиллов и интеграция с БД.',
+                features: ['Paper API', 'Java 21', 'TPS 20.0'],
+                link: 'https://t.me/polnikii'
+            },
+            {
+                id: 'bot-auto-shop',
+                category: 'bots',
+                categoryName: 'Telegram Бот',
+                year: '2026',
+                title: 'Магазин цифровых товаров',
+                desc: 'Telegram бот авто-продаж с приемом оплаты через ЮMoney/Crypto, админкой и рассылками.',
+                features: ['Aiogram 3', 'Python', 'SQLite'],
+                link: 'https://t.me/polnikii'
+            },
+            {
+                id: 'discord-tickets',
+                category: 'bots',
+                categoryName: 'Discord Бот',
+                year: '2026',
+                title: 'Ticket & Audit System',
+                desc: 'Многофункциональный Discord бот для тикетов техподдержки, логов и выдачи ролей.',
+                features: ['Discord.js', 'Node.js', 'Buttons'],
+                link: 'https://t.me/polnikii'
+            },
+            {
+                id: 'web-minecraft-shop',
+                category: 'web',
+                categoryName: 'Веб-Дизайн',
+                year: '2026',
+                title: 'Minecraft Server Web-Store',
+                desc: 'Современный дизайн веб-сайта авто-доната игрового сервера с адаптивной версией.',
+                features: ['Figma', 'Landing', 'Responsive'],
+                link: 'https://t.me/polnikii'
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        // ----------------------------------------------------
+        // Dynamic Vignette Fade Opacity Updates
+        // ----------------------------------------------------
+        function updateVignettes() {
+            const container = document.getElementById('portfolio-container');
+            const leftVignette = document.getElementById('carousel-fade-left');
+            const rightVignette = document.getElementById('carousel-fade-right');
+            if (!container) return;
+
+            const scrollLeft = container.scrollLeft;
+            const maxScroll = container.scrollWidth - container.clientWidth;
+
+            if (leftVignette) {
+                leftVignette.style.opacity = scrollLeft > 15 ? '1' : '0';
+            }
+            if (rightVignette) {
+                rightVignette.style.opacity = scrollLeft < maxScroll - 15 ? '1' : '0';
+            }
+        }
+
+        // ----------------------------------------------------
+        // Render Portfolio Cards Dynamically (Horizontal Carousel)
+        // ----------------------------------------------------
+        function renderPortfolio() {
+            const container = document.getElementById('portfolio-container');
+            container.innerHTML = '';
+
+            const filtered = PROJECTS.filter(p => currentFilter === 'all' || p.category === currentFilter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="w-full apple-glass glass rounded-3xl p-8 sm:p-12 text-center space-y-4 border border-white/10">
+                        <div class="w-12 h-12 rounded-full bg-blue-500/10 text-blue-400 mx-auto flex items-center justify-center glass-indicator">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        </div>
+                        <div class="space-y-1">
+                            <h3 class="text-xl font-heading font-bold text-white">Портфолио пополняется</h3>
+                            <p class="text-neutral-400 text-sm max-w-md mx-auto">
+                                Для добавления проектов внесите объекты в массив <code class="text-blue-400 font-mono">PROJECTS</code> внутри кода сайта.
+                            </p>
+                        </div>
+                    </div>
+                `;
+                updateVignettes();
+                return;
+            }
+
+            const categoryStyles = {
+                'web': { badgeBg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20', label: 'Веб-дизайн' },
+                'minecraft': { badgeBg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20', label: 'Minecraft' },
+                'bots': { badgeBg: 'bg-purple-500/10', text: 'text-purple-400', border: 'border-purple-500/20', label: 'Боты' }
+            };
+
+            filtered.forEach(p => {
+                const style = categoryStyles[p.category] || categoryStyles['web'];
+                const card = document.createElement('div');
+                card.className = 'w-[280px] sm:w-[340px] md:w-[360px] flex-shrink-0 snap-start apple-glass glass rounded-3xl p-6 apple-card-hover flex flex-col justify-between space-y-6 border border-white/10';
+
+                const featuresHtml = (p.features || []).slice(0, 3).map(f => `<span class="px-2.5 py-1 rounded-full bg-white/5 text-[11px] text-neutral-300 border border-white/5 glass">${escapeHtml(f)}</span>`).join('');
+
+                card.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full ${style.badgeBg} ${style.text} border ${style.border} text-xs font-medium glass">${p.categoryName || style.label}</span>
+                            <span class="text-xs text-neutral-400 font-mono">${escapeHtml(p.year || '2026')}</span>
+                        </div>
+                        <h3 class="text-xl font-heading font-bold text-white tracking-tight">${escapeHtml(p.title)}</h3>
+                        <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed line-clamp-3">${escapeHtml(p.desc)}</p>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex flex-wrap gap-1.5">
+                            ${featuresHtml}
+                        </div>
+                        <button onclick="viewProjectDetails('${p.id}')" class="w-full py-2.5 rounded-2xl bg-white/5 hover:bg-white/10 text-white text-xs font-medium transition-all flex items-center justify-center gap-2 glass-indicator">
+                            <span>Подробнее</span>
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Reset scroll left on render
+            container.scrollLeft = 0;
+            updateVignettes();
+        }
+
+        function scrollPortfolio(direction) {
+            const container = document.getElementById('portfolio-container');
+            if (!container) return;
+            const firstCard = container.querySelector('.apple-card-hover');
+            const cardWidth = firstCard ? firstCard.offsetWidth : 340;
+            container.scrollBy({ left: direction * (cardWidth + 24), behavior: 'smooth' });
+        }
+
+        // Clean & Direct 1:1 Mouse Drag to Scroll (No Jerky Animations)
+        function initPortfolioDrag() {
+            const container = document.getElementById('portfolio-container');
+            if (!container) return;
+
+            let isDown = false;
+            let startX = 0;
+            let scrollLeft = 0;
+            let isDragging = false;
+
+            container.addEventListener('scroll', updateVignettes, { passive: true });
+
+            container.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isDragging = false;
+                container.style.scrollBehavior = 'auto';
+                container.style.scrollSnapType = 'none';
+                container.classList.add('cursor-grabbing');
+                container.classList.remove('cursor-grab');
+
+                startX = e.pageX - container.offsetLeft;
+                scrollLeft = container.scrollLeft;
+            });
+
+            const stopDrag = () => {
+                if (!isDown) return;
+                isDown = false;
+                container.style.scrollBehavior = 'smooth';
+                container.style.scrollSnapType = 'x mandatory';
+                container.classList.remove('cursor-grabbing');
+                container.classList.add('cursor-grab');
+                setTimeout(() => { isDragging = false; }, 50);
+                updateVignettes();
+            };
+
+            container.addEventListener('mouseleave', stopDrag);
+            container.addEventListener('mouseup', stopDrag);
+
+            container.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - container.offsetLeft;
+                const walk = x - startX;
+                if (Math.abs(walk) > 5) {
+                    isDragging = true;
+                }
+                container.scrollLeft = scrollLeft - walk;
+                updateVignettes();
+            });
+
+            container.addEventListener('click', (e) => {
+                if (isDragging) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true);
+        }
+
+        function filterPortfolio(cat) {
+            currentFilter = cat;
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(btn => {
+                btn.classList.remove('bg-white', 'text-black', 'glass-indicator');
+                btn.classList.add('text-neutral-400');
+            });
+            const activeBtn = document.getElementById(`btn-${cat}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-white', 'text-black', 'glass-indicator');
+                activeBtn.classList.remove('text-neutral-400');
+            }
+            renderPortfolio();
+        }
+
+        // ----------------------------------------------------
+        // View Details Modal
+        // ----------------------------------------------------
+        function viewProjectDetails(id) {
+            const p = PROJECTS.find(item => item.id === id);
+            if (!p) return;
+
+            document.getElementById('modal-tag').textContent = p.categoryName || p.category.toUpperCase();
+            document.getElementById('modal-title').textContent = p.title;
+            document.getElementById('modal-desc').textContent = p.desc;
+
+            const list = document.getElementById('modal-features');
+            if (p.features && p.features.length) {
+                list.innerHTML = p.features.map(f => `<li class="flex items-center gap-2"><span>✓ ${escapeHtml(f)}</span></li>`).join('');
+            } else {
+                list.innerHTML = '<li>Кастомное решение под ТЗ заказчика</li>';
+            }
+
+            const linkBtn = document.getElementById('modal-link');
+            if (p.link) {
+                linkBtn.href = p.link;
+                linkBtn.target = "_blank";
+            } else {
+                linkBtn.href = "#contact";
+                linkBtn.removeAttribute("target");
+            }
+
+            const modal = document.getElementById('project-modal');
+            const card = document.getElementById('modal-card');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            card.classList.remove('scale-95');
+            card.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('project-modal');
+            const card = document.getElementById('modal-card');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+        }
+
+        // Helper: Toast notification
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-text').textContent = msg;
+            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-20px]');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-20px]');
+            }, 3000);
+        }
+
+        function copyToClipboard(text, message) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(message || 'Скопировано в буфер обмена!');
+            });
+        }
+
+        function escapeHtml(text) {
+            return text ? String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") : '';
+        }
+
+        // ----------------------------------------------------
+        // Calculator Logic
+        // ----------------------------------------------------
+        function updateCalc() {
+            const typeRadio = document.querySelector('input[name="calc-type"]:checked');
+            if (!typeRadio) return;
+            const type = typeRadio.value;
+            
+            const fast = document.getElementById('opt-fast').checked;
+            const db = document.getElementById('opt-db').checked;
+            const support = document.getElementById('opt-support').checked;
+
+            if (type === 'techadmin') {
+                document.getElementById('calc-price').textContent = '40% с доната';
+                document.getElementById('calc-days').textContent = 'Постоянное сотрудничество';
+                return;
+            }
+
+            let basePrice = 1500;
+            let days = '1–3 дня';
+
+            if (type === 'minecraft') {
+                basePrice = 1000;
+                days = '1–4 дня';
+            } else if (type === 'bot') {
+                basePrice = 500;
+                days = '1–2 дня';
+            }
+
+            if (db) basePrice += 1500;
+            if (support) basePrice += 1000;
+            if (fast) {
+                basePrice = Math.round(basePrice * 1.35);
+                days = 'До 24 часов (Срочно)';
+            }
+
+            document.getElementById('calc-price').textContent = `от ${basePrice.toLocaleString('ru-RU')} ₽`;
+            document.getElementById('calc-days').textContent = days;
+        }
+
+        function sendCalcToTelegram() {
+            const typeMap = { 
+                'web': 'Веб-дизайн (от 1 500 ₽)', 
+                'minecraft': 'Minecraft Проект (от 1 000 ₽)', 
+                'bot': 'Telegram/Discord Бот (от 500 ₽)',
+                'techadmin': 'Тех. Админ Minecraft (40% с доната)'
+            };
+            const typeRadio = document.querySelector('input[name="calc-type"]:checked');
+            const type = typeRadio ? typeRadio.value : 'web';
+            const price = document.getElementById('calc-price').textContent;
+            
+            const msg = `Привет! Хочу заказать услугу: ${typeMap[type]} (${price}).`;
+            const url = `https://t.me/polnikii?text=${encodeURIComponent(msg)}`;
+            window.open(url, '_blank');
+        }
+
+        // Initial render on page load
+        renderPortfolio();
+        initPortfolioDrag();
+        adjustGifPosition();
+    </script>
+</body>
+</html>
