@@ -168,19 +168,7 @@
 </head>
 <body class="bg-black text-white font-sans antialiased selection:bg-blue-500 selection:text-white transition-colors duration-300 relative overflow-x-hidden min-h-screen">
 
-    <!-- Bottom-Left Liquid Glass Toggle Button with SVG Icon -->
-    <button onclick="toggleKonataGif()" id="konata-toggle-btn" title="Переключить анимацию" class="fixed left-4 sm:left-6 bottom-4 sm:bottom-6 z-40 px-3.5 py-2.5 rounded-full apple-glass glass glass-indicator text-white hover:scale-105 active:scale-95 transition-all flex items-center gap-2.5 border border-white/10 shadow-2xl">
-        <div class="w-6 h-6 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center glass-indicator">
-            <!-- SVG Eye / Visibility Icon -->
-            <svg class="w-3.5 h-3.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-            </svg>
-        </div>
-        <span class="text-xs font-medium text-neutral-300 hover:text-white">Анимация</span>
-    </button>
-
-    <!-- Translucent Konata Animated GIF Container (Right Corner) -->
+    <!-- Translucent Konata Animated GIF Container (Right Corner - Permanently Active) -->
     <div id="konata-container" class="fixed right-2 sm:right-6 bottom-0 z-30 hidden md:block pointer-events-none">
         <img id="konata-gif" src="3319965.gif" alt="Konata Izumi GIF" class="h-[27vh] max-h-[260px] object-contain object-bottom opacity-30 pointer-events-none">
     </div>
@@ -852,12 +840,12 @@
         });
 
         // =========================================================================
-        // Dynamic GIF Positioning relative to Footer & Toggle Handler
+        // Dynamic GIF Positioning relative to Footer (Always Active)
         // =========================================================================
         function adjustGifPosition() {
             const container = document.getElementById('konata-container');
             const footer = document.querySelector('footer');
-            if (!container || !footer || container.style.display === 'none') return;
+            if (!container || !footer) return;
 
             const footerRect = footer.getBoundingClientRect();
             const windowHeight = window.innerHeight;
@@ -868,36 +856,6 @@
             } else {
                 container.style.bottom = '0px';
             }
-        }
-
-        function toggleKonataGif() {
-            const container = document.getElementById('konata-container');
-            const btn = document.getElementById('konata-toggle-btn');
-            if (!container) return;
-
-            const isCurrentlyHidden = container.style.display === 'none';
-
-            if (isCurrentlyHidden) {
-                container.style.display = 'block';
-                localStorage.setItem('hide-konata-gif', 'false');
-                if (btn) btn.classList.add('border-blue-500/40', 'bg-blue-500/10');
-                showToast('Анимация включена');
-                adjustGifPosition();
-            } else {
-                container.style.display = 'none';
-                localStorage.setItem('hide-konata-gif', 'true');
-                if (btn) btn.classList.remove('border-blue-500/40', 'bg-blue-500/10');
-                showToast('Анимация выключена');
-            }
-        }
-
-        // Initialize state on load
-        if (localStorage.getItem('hide-konata-gif') === 'true') {
-            const container = document.getElementById('konata-container');
-            if (container) container.style.display = 'none';
-        } else {
-            const btn = document.getElementById('konata-toggle-btn');
-            if (btn) btn.classList.add('border-blue-500/40', 'bg-blue-500/10');
         }
 
         window.addEventListener('scroll', adjustGifPosition, { passive: true });
