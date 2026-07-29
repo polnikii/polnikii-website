@@ -1,176 +1,190 @@
 <!DOCTYPE html>
-<html lang="ru" class="dark scroll-smooth overflow-x-hidden">
+<html lang="ru" class="scroll-smooth overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>polnikii — Web Designer, Minecraft & Bot Developer</title>
     <meta name="description" content="Портфолио polnikii: веб-дизайн, разработка плагинов и сборок Minecraft, Telegram и Discord боты, тех. администрирование игровых серверов.">
     
-    <!-- Google Fonts: Inter & Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-                        heading: ['Outfit', 'Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        apple: {
-                            bg: '#000000',
-                            card: 'rgba(22, 22, 26, 0.65)',
-                            cardBorder: 'rgba(255, 255, 255, 0.08)',
-                            accent: '#2997ff',
-                            accentGlow: 'rgba(41, 151, 255, 0.25)',
-                            textSecondary: '#86868b',
-                        }
-                    },
-                    boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.36)',
-                        'glow': '0 0 30px rgba(41, 151, 255, 0.2)',
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    }
-                }
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Inter', 'sans-serif'], heading: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'SF Pro Text', 'Inter', 'sans-serif'] } } } }
+    </script>
+    <script>
+        try {
+            const savedTheme = localStorage.getItem('polnikii-theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-theme');
             }
-        }
+        } catch (error) {}
     </script>
     
     <style>
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden !important;
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* ═══════════════════════════════════════════════════
-           Liquid Glass — переиспользуемый эффект «жидкого стекла»
-           ═══════════════════════════════════════════════════ */
         :root {
-            /* ═══ Базовая стеклянная поверхность ═══ */
-            --glass-shadow:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.03),
-                inset 1.8px 3px 0px -2px rgba(255, 255, 255, 0.27),
-                inset -2px -2px 0px -2px rgba(255, 255, 255, 0.24),
-                inset -3px -8px 1px -6px rgba(255, 255, 255, 0.18),
-                inset -0.3px -1px 4px 0px rgba(0, 0, 0, 0.24),
-                inset -1.5px 2.5px 0px -2px rgba(0, 0, 0, 0.4),
-                inset 0px 3px 4px -2px rgba(0, 0, 0, 0.4),
-                inset 2px -6.5px 1px -4px rgba(0, 0, 0, 0.2),
-                0px 1px 5px 0px rgba(0, 0, 0, 0.2),
-                0px 6px 16px 0px rgba(0, 0, 0, 0.16);
-
-            /* ═══ Активное / нажатое состояние (табы, сегменты) ═══ */
-            --glass-shadow-active:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.03),
-                inset 1px 1px 0 0 rgba(255, 255, 255, 0.15),
-                inset -1px -1px 0 0 rgba(255, 255, 255, 0.1),
-                0 2px 4px rgba(0, 0, 0, 0.15);
-
-            /* ═══ Ползунок-индикатор (сегментированный переключатель) ═══ */
-            --glass-shadow-indicator:
-                inset 0 0 0 1px #ffffff08,
-                inset 2px 1px 0 -1px #ffffff45,
-                inset -1.5px -1px 0 -1px #ffffff3d,
-                inset -2px -6px 1px -5px #ffffff2e,
-                inset -1px 2px 3px -1px #0006,
-                inset 0 -4px 1px -2px #0003,
-                0 3px 6px #00000029;
+            --color-canvas: #f5f5f7;
+            --color-surface: #ffffff;
+            --color-surface-subtle: #fbfbfd;
+            --color-text: #1d1d1f;
+            --color-secondary: #6e6e73;
+            --color-tertiary: #86868b;
+            --color-border: #d2d2d7;
+            --color-border-subtle: #e8e8ed;
+            --color-accent: #0071e3;
+            --color-accent-hover: #0077ed;
+            --color-accent-soft: #e8f3ff;
+            --color-success: #2d8f4e;
+            --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Inter, sans-serif;
+            --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+            --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+            --radius-sm: 8px; --radius-md: 12px; --radius-lg: 18px; --radius-pill: 980px;
+            --shadow-card: 0 1px 2px rgba(0, 0, 0, .04);
+            --shadow-raised: 0 4px 16px rgba(0, 0, 0, .08);
+            --ease-standard: cubic-bezier(.2, .7, .3, 1);
+        }
+        :root.dark-theme {
+            --color-canvas: #0b0b0d;
+            --color-surface: #1d1d1f;
+            --color-surface-subtle: #161617;
+            --color-text: #f5f5f7;
+            --color-secondary: #a1a1a6;
+            --color-tertiary: #86868b;
+            --color-border: #424245;
+            --color-border-subtle: #2c2c2e;
+            --color-accent: #0a84ff;
+            --color-accent-hover: #409cff;
+            --color-accent-soft: rgba(10, 132, 255, .14);
+            --shadow-card: 0 1px 2px rgba(0, 0, 0, .22);
+            --shadow-raised: 0 4px 16px rgba(0, 0, 0, .38);
         }
 
-        .glass {
-            box-shadow: var(--glass-shadow);
-        }
+        html { scroll-behavior: smooth; }
+        html, body { max-width: 100%; overflow-x: hidden !important; }
+        body, button, input { font-family: var(--font-system) !important; }
+        body { background: var(--color-canvas) !important; color: var(--color-text) !important; }
+        ::selection { background: var(--color-accent) !important; color: var(--color-surface) !important; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--color-canvas); }
+        ::-webkit-scrollbar-thumb { background: #c7c7cc; border: 3px solid var(--color-canvas); border-radius: var(--radius-pill); }
+        .dark-theme ::-webkit-scrollbar-thumb { background: #5a5a5e; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        .glass-active {
-            box-shadow: var(--glass-shadow-active);
-        }
+        /* Universal light-mode translation for the existing semantic utility markup. */
+        .bg-black, .bg-neutral-950\/80 { background-color: var(--color-canvas) !important; }
+        .text-white, .text-neutral-300 { color: var(--color-text) !important; }
+        .text-neutral-400, .text-neutral-500 { color: var(--color-secondary) !important; }
+        .text-blue-400, .text-blue-500, .text-blue-300 { color: var(--color-accent) !important; }
+        .text-emerald-400, .text-amber-400, .text-purple-400, .text-indigo-400, .text-rose-400 { color: var(--color-secondary) !important; }
+        .border-white\/10, .border-white\/15, .border-white\/20, .border-white\/5 { border-color: var(--color-border-subtle) !important; }
+        .bg-white\/5, .bg-white\/10, .bg-white\/20 { background-color: var(--color-surface-subtle) !important; }
+        .bg-emerald-500\/10, .bg-amber-500\/10, .bg-purple-500\/10, .bg-indigo-500\/10, .bg-rose-500\/10, .bg-blue-500\/10 { background-color: var(--color-accent-soft) !important; }
+        .border-emerald-500\/20, .border-amber-500\/20, .border-purple-500\/20, .border-indigo-500\/20, .border-rose-500\/20, .border-blue-500\/20 { border-color: #c6e3ff !important; }
+        .bg-emerald-400, .bg-emerald-500, .bg-blue-500, .bg-blue-600 { background-color: var(--color-accent) !important; }
+        .bg-gradient-to-r, .bg-gradient-to-l { background-image: none !important; }
+        .from-blue-400, .via-indigo-300, .to-purple-400, .from-emerald-400, .to-teal-200 { color: var(--color-text) !important; -webkit-text-fill-color: currentColor; }
 
-        .glass-indicator {
-            box-shadow: var(--glass-shadow-indicator);
-        }
+        .ambient-glow-1, .ambient-glow-2 { display: none !important; }
+        .apple-glass { background: var(--color-surface) !important; border: 1px solid var(--color-border-subtle) !important; box-shadow: var(--shadow-card) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+        .glass, .glass-active, .glass-indicator { box-shadow: none !important; }
+        .apple-card-hover { transition: transform .25s var(--ease-standard), box-shadow .25s var(--ease-standard), border-color .25s var(--ease-standard) !important; }
+        .apple-card-hover:hover { transform: translateY(-2px) !important; border-color: var(--color-border) !important; box-shadow: var(--shadow-raised) !important; }
 
-        /* Glassmorphism Dark Apple Aesthetic */
-        .apple-glass {
-            background: rgba(22, 22, 26, 0.65);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: var(--glass-shadow);
-        }
+        header { padding: var(--space-3) var(--space-4) !important; }
+        header > div { max-width: 1120px !important; min-height: 48px; padding: var(--space-2) var(--space-4) !important; border-radius: var(--radius-pill) !important; background: rgba(255,255,255,.88) !important; backdrop-filter: blur(20px) saturate(180%) !important; -webkit-backdrop-filter: blur(20px) saturate(180%) !important; }
+        .dark-theme header > div { background: rgba(29,29,31,.88) !important; }
+        .dark-theme header a.bg-white { background: var(--color-accent) !important; color: #fff !important; }
+        .dark-theme .border-emerald-500\/20, .dark-theme .border-amber-500\/20, .dark-theme .border-purple-500\/20, .dark-theme .border-indigo-500\/20, .dark-theme .border-rose-500\/20, .dark-theme .border-blue-500\/20 { border-color: rgba(10, 132, 255, .34) !important; }
+        .dark-theme #services .w-10, .dark-theme #contact .w-11, .dark-theme #contact .w-12 { background: rgba(10, 132, 255, .12) !important; border-color: rgba(10, 132, 255, .36) !important; }
+        .dark-theme #desktop-menu-panel .bg-emerald-500\/10 { background: rgba(255,255,255,.05) !important; border-color: var(--color-border) !important; }
+        .dark-theme #desktop-menu-panel .bg-emerald-400 { background-color: var(--color-accent) !important; }
+        header nav a, footer a { color: var(--color-secondary) !important; }
+        header nav a:hover, footer a:hover { color: var(--color-text) !important; }
+        .font-heading, .font-sans { font-family: var(--font-system) !important; }
+        .font-heading { letter-spacing: -.02em !important; }
+        #mobile-menu { top: 72px !important; border-radius: var(--radius-lg) !important; background: var(--color-surface) !important; box-shadow: var(--shadow-raised) !important; }
 
-        .apple-card-hover {
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-                        border-color 0.35s ease, 
-                        box-shadow 0.35s ease;
-        }
+        main { max-width: 1120px !important; padding-top: 136px !important; padding-bottom: 96px !important; gap: 0 !important; }
+        section[id] { scroll-margin-top: 96px; }
+        main > section { margin-top: 112px !important; }
+        main > section:first-child { margin-top: 0 !important; }
+        #about { padding: var(--space-7) 0 var(--space-5) !important; }
+        #about > div { width: min(100%, 940px); }
+        #about > div:first-child { color: var(--color-secondary) !important; border: 1px solid var(--color-border-subtle) !important; background: var(--color-surface) !important; border-radius: var(--radius-pill) !important; }
+        h1 { max-width: 940px; width: 100%; overflow-wrap: anywhere; font-size: clamp(42px, 6.2vw, 76px) !important; line-height: 1.06 !important; letter-spacing: -.045em !important; color: var(--color-text) !important; }
+        h2 { max-width: 100%; overflow-wrap: anywhere; font-size: clamp(34px, 4.3vw, 52px) !important; line-height: 1.08 !important; letter-spacing: -.035em !important; color: var(--color-text) !important; }
+        h3 { letter-spacing: -.018em !important; }
+        #about p { max-width: 690px !important; font-size: 19px !important; line-height: 1.5 !important; color: var(--color-secondary) !important; }
+        section > div > span:first-child { color: var(--color-accent) !important; font-size: 13px !important; letter-spacing: .02em !important; text-transform: none !important; }
 
-        .apple-card-hover:hover {
-            transform: translateY(-4px) scale(1.01);
-            border-color: rgba(255, 255, 255, 0.18);
-            box-shadow: var(--glass-shadow-indicator);
-        }
+        a[class*="bg-blue-600"], button[class*="bg-blue-600"], #modal-link, .filter-btn.bg-white { background: var(--color-accent) !important; border: 1px solid transparent !important; color: #fff !important; box-shadow: none !important; }
+        a[class*="bg-blue-600"]:hover, button[class*="bg-blue-600"]:hover, #modal-link:hover, .filter-btn.bg-white:hover { background: var(--color-accent-hover) !important; transform: none !important; }
+        #about a, #calculator button, #modal-link { border-radius: var(--radius-pill) !important; }
+        #about a:not([class*="bg-blue-600"]) { color: var(--color-accent) !important; background: transparent !important; border: 1px solid var(--color-accent) !important; }
+        button, a { transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s var(--ease-standard) !important; }
+        button:active, a:active { transform: scale(.98) !important; }
 
-        /* Ambient Glow Backgrounds */
-        .ambient-glow-1 {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(41, 151, 255, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
-            top: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            pointer-events: none;
-            z-index: 0;
+        .rounded-3xl { border-radius: var(--radius-lg) !important; }
+        .rounded-2xl { border-radius: var(--radius-md) !important; }
+        .rounded-xl, .rounded-lg { border-radius: var(--radius-sm) !important; }
+        .rounded-full { border-radius: var(--radius-pill) !important; }
+        #services > div:last-child > div, #calculator .apple-glass, #contact, #portfolio-container > div, #modal-card { border-radius: var(--radius-lg) !important; }
+        #services .apple-glass, #calculator .apple-glass, #contact, #portfolio-container > div { background: var(--color-surface) !important; }
+        #services .w-10, #contact .w-11, #contact .w-12 { background: var(--color-accent-soft) !important; color: var(--color-accent) !important; border-color: #c6e3ff !important; }
+        #services > div:last-child .text-blue-400, #services > div:last-child .text-emerald-400, #services > div:last-child .text-amber-400, #services > div:last-child .text-purple-400 { color: var(--color-secondary) !important; }
+        #services > div:last-child .bg-blue-500\/10, #services > div:last-child .bg-emerald-500\/10, #services > div:last-child .bg-amber-500\/10, #services > div:last-child .bg-purple-500\/10 { background: var(--color-surface-subtle) !important; }
+        #services > div:last-child .border-blue-500\/20, #services > div:last-child .border-emerald-500\/20, #services > div:last-child .border-amber-500\/20, #services > div:last-child .border-purple-500\/20 { border-color: var(--color-border-subtle) !important; }
+        main > section:not([id]) > div:last-child > div > div:first-child { color: var(--color-text) !important; }
+        #calculator label:has(input[type="radio"]) > div { background: var(--color-surface) !important; border-color: var(--color-border-subtle) !important; box-shadow: none !important; }
+        #calculator label:has(input[type="radio"]:checked) > div { background: var(--color-accent-soft) !important; border-color: var(--color-accent) !important; box-shadow: none !important; }
+        #calculator label:has(input[type="checkbox"]) { background: var(--color-surface) !important; border-color: var(--color-border-subtle) !important; box-shadow: none !important; }
+        #calculator label:has(input[type="checkbox"]:hover), #calculator label:has(input[type="checkbox"]:checked) { background: var(--color-surface) !important; border-color: var(--color-accent) !important; box-shadow: none !important; }
+        #calculator input[type="checkbox"] + div { background: var(--color-surface) !important; border-color: var(--color-border) !important; box-shadow: none !important; }
+        #calculator input[type="checkbox"]:checked + div { background: var(--color-accent) !important; border-color: var(--color-accent) !important; box-shadow: none !important; }
+        #calculator [class*="font-mono"] { font-family: var(--font-system) !important; font-variant-numeric: tabular-nums; }
+        #portfolio-container { padding-bottom: var(--space-3) !important; }
+        #carousel-fade-left, #carousel-fade-right { display: none !important; }
+        .filter-btn { color: var(--color-secondary) !important; border-radius: var(--radius-pill) !important; }
+        .filter-btn.bg-white { color: #fff !important; }
+        #contact { padding: clamp(32px, 6vw, 72px) !important; background: var(--color-surface-subtle) !important; }
+        footer { background: var(--color-surface) !important; border-color: var(--color-border-subtle) !important; backdrop-filter: none !important; }
+        #project-modal { background: rgba(29,29,31,.32) !important; backdrop-filter: blur(8px) !important; -webkit-backdrop-filter: blur(8px) !important; }
+        #modal-card { background: var(--color-surface) !important; box-shadow: var(--shadow-raised) !important; }
+        #toast { background: var(--color-surface) !important; border: 1px solid var(--color-border-subtle) !important; border-radius: var(--radius-md) !important; box-shadow: var(--shadow-raised) !important; }
+        .theme-switch { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); width: 100%; padding: 10px 12px; border: 1px solid var(--color-border-subtle); border-radius: var(--radius-sm); background: var(--color-surface-subtle); color: var(--color-text); font-size: 15px; font-weight: 500; }
+        .theme-switch:hover { border-color: var(--color-border); }
+        .theme-switch-track { display: flex; align-items: center; width: 38px; height: 22px; padding: 2px; border-radius: var(--radius-pill); background: var(--color-border); transition: background-color .2s ease; }
+        .theme-switch-thumb { width: 18px; height: 18px; border-radius: var(--radius-pill); background: var(--color-surface); box-shadow: 0 1px 2px rgba(0,0,0,.18); transition: transform .24s var(--ease-standard); }
+        .dark-theme .theme-switch-track { background: var(--color-accent); }
+        .dark-theme .theme-switch-thumb { transform: translateX(16px); }
+        @media (min-width: 1024px) {
+            header { inset: 0 auto 0 0 !important; width: 256px !important; padding: var(--space-4) !important; pointer-events: none; }
+            #desktop-menu-toggle { position: relative; z-index: 2; padding: var(--space-3); color: var(--color-text) !important; pointer-events: auto; border-radius: var(--radius-sm); }
+            #desktop-menu-toggle:hover { background: var(--color-surface) !important; }
+            .menu-toggle-icon { margin-left: var(--space-1); color: var(--color-secondary); transition: transform .25s var(--ease-standard), color .2s ease; }
+            header.desktop-menu-open .menu-toggle-icon { color: var(--color-accent); transform: rotate(90deg); }
+            #desktop-menu-panel { position: absolute; inset: var(--space-4) auto var(--space-4) var(--space-4); width: 224px; height: calc(100vh - 32px); padding: 88px var(--space-4) var(--space-4) !important; border-radius: var(--radius-lg) !important; flex-direction: column !important; align-items: stretch !important; justify-content: flex-start !important; gap: var(--space-6) !important; opacity: 0; pointer-events: none; transform: translateX(-12px); transition: opacity .24s ease, transform .32s var(--ease-standard) !important; }
+            header.desktop-menu-open #desktop-menu-panel { opacity: 1; pointer-events: auto; transform: translateX(0); }
+            #desktop-menu-panel > a { display: none; }
+            #desktop-menu-panel nav { display: flex !important; flex-direction: column !important; align-items: stretch !important; gap: var(--space-1) !important; width: 100%; }
+            #desktop-menu-panel nav a { padding: 10px 12px; border-radius: var(--radius-sm); font-size: 15px; }
+            header nav a:hover { background: var(--color-surface-subtle); color: var(--color-text) !important; }
+            #desktop-menu-panel > .hidden.lg\:flex:last-of-type { display: flex !important; flex-direction: column !important; align-items: stretch !important; margin-top: auto; width: 100%; }
+            #desktop-menu-panel > .hidden.lg\:flex:last-of-type > * { justify-content: center; width: 100%; }
+            #desktop-menu-panel .theme-switch { justify-content: space-between !important; }
+            main { margin-left: auto !important; margin-right: auto !important; width: auto !important; padding-left: var(--space-7) !important; padding-right: var(--space-7) !important; }
+            footer { margin-left: 0 !important; }
+            section[id] { scroll-margin-top: var(--space-6); }
         }
-
-        .ambient-glow-2 {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(147, 51, 234, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
-            bottom: 10%;
-            right: -100px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #000000;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #26262a;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3f3f46;
-        }
+        @media (max-width: 640px) { main { padding-top: 112px !important; } main > section { margin-top: 80px !important; } h1 { font-size: 42px !important; } #about p { font-size: 17px !important; } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
     </style>
 </head>
 <body class="bg-black text-white font-sans antialiased selection:bg-blue-500 selection:text-white transition-colors duration-300 relative overflow-x-hidden min-h-screen">
 
     <!-- Translucent Konata Animated GIF Container (Right Corner - Permanently Active) -->
     <div id="konata-container" class="fixed right-2 sm:right-6 bottom-0 z-30 hidden md:block pointer-events-none">
-        <img id="konata-gif" src="3319965.gif" alt="Konata Izumi GIF" class="h-[27vh] max-h-[260px] object-contain object-bottom opacity-30 pointer-events-none">
+        <img id="konata-gif" src="dance-konata.gif" alt="Konata Izumi GIF" class="h-[27vh] max-h-[260px] object-contain object-bottom opacity-30 pointer-events-none">
     </div>
 
     <!-- Ambient Glow Effects -->
@@ -187,7 +201,14 @@
 
     <!-- Header / Navbar -->
     <header class="fixed top-0 left-0 right-0 z-40 px-3 sm:px-8 py-3 sm:py-4 transition-all duration-300">
-        <div class="w-full max-w-6xl mx-auto apple-glass glass rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2">
+        <button type="button" id="desktop-menu-toggle" onclick="toggleDesktopMenu()" aria-label="Открыть навигацию" aria-expanded="false" class="hidden lg:flex items-center gap-2.5 font-heading font-bold text-base sm:text-lg tracking-tight text-white group-hover:text-blue-400 transition-colors">
+            <img src="konata.jpg" alt="" class="w-8 h-8 rounded-full object-cover border border-white/20">
+            <span>polnikii<span class="text-blue-500">.</span></span>
+            <svg class="menu-toggle-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 7h14M5 12h14M5 17h14"></path>
+            </svg>
+        </button>
+        <div id="desktop-menu-panel" class="w-full max-w-6xl mx-auto apple-glass glass rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2">
             <!-- Brand Logo with Avatar Image -->
             <a href="#" class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 group">
                 <img src="konata.jpg" alt="polnikii avatar" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover border border-white/20 glass-indicator group-hover:scale-105 transition-transform">
@@ -198,15 +219,19 @@
 
             <!-- Desktop Nav Links (Hidden on Mobile & Tablet) -->
             <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-neutral-400">
-                <a href="#about" class="hover:text-white transition-colors">Обо мне</a>
-                <a href="#services" class="hover:text-white transition-colors">Услуги</a>
-                <a href="#portfolio" class="hover:text-white transition-colors">Портфолио</a>
-                <a href="#calculator" class="hover:text-white transition-colors">Калькулятор</a>
-                <a href="#contact" class="hover:text-white transition-colors">Контакты</a>
+                <a href="#about" onclick="closeDesktopMenu()" class="hover:text-white transition-colors">Обо мне</a>
+                <a href="#services" onclick="closeDesktopMenu()" class="hover:text-white transition-colors">Услуги</a>
+                <a href="#portfolio" onclick="closeDesktopMenu()" class="hover:text-white transition-colors">Портфолио</a>
+                <a href="#calculator" onclick="closeDesktopMenu()" class="hover:text-white transition-colors">Калькулятор</a>
+                <a href="#contact" onclick="closeDesktopMenu()" class="hover:text-white transition-colors">Контакты</a>
             </nav>
 
             <!-- Actions Desktop -->
             <div class="hidden lg:flex items-center gap-3">
+                <button type="button" data-theme-toggle onclick="toggleTheme()" class="theme-switch" aria-label="Переключить тёмную тему" aria-pressed="false">
+                    <span>Тёмная тема</span>
+                    <span class="theme-switch-track" aria-hidden="true"><span class="theme-switch-thumb"></span></span>
+                </button>
                 <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium glass">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span>Свободен для заказов</span>
@@ -232,6 +257,10 @@
 
     <!-- Mobile / Tablet Liquid Glass Dropdown Menu -->
     <div id="mobile-menu" class="fixed left-4 right-4 top-16 sm:top-20 z-40 lg:hidden apple-glass glass rounded-3xl p-5 sm:p-6 border border-white/15 shadow-2xl opacity-0 pointer-events-none scale-95 transition-all duration-300 ease-out flex flex-col space-y-5 backdrop-blur-2xl max-w-[calc(100vw-2rem)] mx-auto">
+        <button type="button" data-theme-toggle onclick="toggleTheme()" class="theme-switch" aria-label="Переключить тёмную тему" aria-pressed="false">
+            <span>Тёмная тема</span>
+            <span class="theme-switch-track" aria-hidden="true"><span class="theme-switch-thumb"></span></span>
+        </button>
         <!-- Status Badge -->
         <div class="flex items-center justify-between pb-3.5 border-b border-white/10">
             <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium glass">
@@ -286,8 +315,8 @@
             <!-- Big Headline -->
             <div class="space-y-4 sm:space-y-5 max-w-4xl">
                 <h1 class="text-3xl sm:text-6xl md:text-7xl font-heading font-extrabold tracking-tight text-white leading-[1.15] break-words">
-                    Премиальный <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">веб-дизайн</span>, 
-                    разработка <span class="bg-gradient-to-r from-emerald-400 to-teal-200 bg-clip-text text-transparent">Minecraft</span> &amp; ботов.
+                    Премиальный <span class="text-blue-500">веб-дизайн</span>,
+                    разработка <span class="text-blue-500">Minecraft</span> &amp; ботов.
                 </h1>
                 <p class="text-base sm:text-xl text-neutral-400 font-normal max-w-2xl mx-auto leading-relaxed px-2">
                     Привет! Я <strong class="text-white font-semibold">polnikii</strong>. Проектирую интерфейсы в Figma, пишу кастомные плагины для Minecraft, создаю Telegram &amp; Discord ботов и администрирую сервера.
@@ -454,13 +483,10 @@
                 </div>
             </div>
 
-            <!-- Dynamic Black Side Vignettes (Fades out when at 0 or max scroll) -->
+            <!-- Carousel viewport -->
             <div class="relative w-full overflow-hidden">
-                <!-- Left Black Vignette Overlay -->
-                <div id="carousel-fade-left" class="pointer-events-none absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-black via-black/80 to-transparent z-20 opacity-0 transition-opacity duration-300"></div>
-
-                <!-- Right Black Vignette Overlay -->
-                <div id="carousel-fade-right" class="pointer-events-none absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-black via-black/80 to-transparent z-20 opacity-100 transition-opacity duration-300"></div>
+                <div id="carousel-fade-left" class="hidden"></div>
+                <div id="carousel-fade-right" class="hidden"></div>
 
                 <!-- Clean Carousel Track -->
                 <div id="portfolio-container" class="flex overflow-x-auto snap-x snap-mandatory gap-5 sm:gap-6 py-4 px-1 sm:px-2 scroll-smooth no-scrollbar cursor-grab select-none relative z-10" style="scrollbar-width: none; -ms-overflow-style: none;">
@@ -615,7 +641,7 @@
                         </div>
                     </div>
 
-                    <button onclick="sendCalcToTelegram()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm transition-all hover:shadow-glow hover:scale-105 active:scale-95 glass-indicator flex items-center justify-center gap-2">
+                    <button onclick="sendCalcToTelegram()" class="w-full py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all hover:scale-105 active:scale-95 glass-indicator flex items-center justify-center gap-2">
                         <!-- Telegram Icon -->
                         <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.03 9.56c-.15.68-.56.84-1.13.53l-3.1-2.28-1.5 1.44c-.16.16-.3.3-.61.3l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12.01-4.63c.56-.21 1.04.13.88.83z"/></svg>
                         <span>Заказать в Telegram</span>
@@ -830,12 +856,65 @@
             }
         }
 
+        function toggleDesktopMenu() {
+            if (!window.matchMedia('(min-width: 1024px)').matches) return;
+            const header = document.querySelector('header');
+            const trigger = document.getElementById('desktop-menu-toggle');
+            if (!header || !trigger) return;
+
+            const isOpen = header.classList.toggle('desktop-menu-open');
+            trigger.setAttribute('aria-expanded', String(isOpen));
+            trigger.setAttribute('aria-label', isOpen ? 'Закрыть навигацию' : 'Открыть навигацию');
+        }
+
+        function closeDesktopMenu() {
+            const header = document.querySelector('header');
+            const trigger = document.getElementById('desktop-menu-toggle');
+            if (!header || !trigger) return;
+
+            header.classList.remove('desktop-menu-open');
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.setAttribute('aria-label', 'Открыть навигацию');
+        }
+
+        function toggleTheme() {
+            const root = document.documentElement;
+            const isDark = root.classList.toggle('dark-theme');
+
+            try {
+                localStorage.setItem('polnikii-theme', isDark ? 'dark' : 'light');
+            } catch (error) {}
+
+            syncThemeToggleLabel();
+        }
+
+        function syncThemeToggleLabel() {
+            const isDark = document.documentElement.classList.contains('dark-theme');
+            document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+                button.setAttribute('aria-label', isDark ? 'Включить светлую тему' : 'Включить тёмную тему');
+                button.setAttribute('aria-pressed', String(isDark));
+            });
+        }
+
         // Close mobile menu if clicked outside
         document.addEventListener('click', (e) => {
             const menu = document.getElementById('mobile-menu');
             const btn = document.getElementById('burger-btn');
             if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
                 closeMobileMenu();
+            }
+
+            const header = document.querySelector('header');
+            const desktopToggle = document.getElementById('desktop-menu-toggle');
+            if (header && desktopToggle && !header.contains(e.target) && !desktopToggle.contains(e.target)) {
+                closeDesktopMenu();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+                closeDesktopMenu();
             }
         });
 
@@ -1132,7 +1211,7 @@
 
             const list = document.getElementById('modal-features');
             if (p.features && p.features.length) {
-                list.innerHTML = p.features.map(f => `<li class="flex items-center gap-2"><span>✓ ${escapeHtml(f)}</span></li>`).join('');
+                        list.innerHTML = p.features.map(f => `<li class="flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 flex-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 13 4 4L19 7"></path></svg><span>${escapeHtml(f)}</span></li>`).join('');
             } else {
                 list.innerHTML = '<li>Кастомное решение под ТЗ заказчика</li>';
             }
@@ -1243,6 +1322,7 @@
         }
 
         // Initial render on page load
+        syncThemeToggleLabel();
         renderPortfolio();
         initPortfolioDrag();
         adjustGifPosition();
