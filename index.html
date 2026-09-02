@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>polnikii — Web Designer, Minecraft & Bot Developer</title>
     <meta name="description" content="Портфолио polnikii: веб-дизайн, разработка плагинов и сборок Minecraft, Telegram и Discord боты, тех. администрирование игровых серверов.">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,500,0,0" rel="stylesheet">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,6 +22,57 @@
     </script>
     
     <style>
+        /* Material Design 3 visual layer. The original palette is intentionally preserved. */
+        @font-face {
+            font-family: "Gilroy Local";
+            src: url("fonts/gilroy/Gilroy-Medium.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+        }
+        .material-symbols-rounded {
+            font-family: "Material Symbols Rounded" !important;
+            font-weight: 500;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: "liga";
+            -webkit-font-smoothing: antialiased;
+            font-feature-settings: "liga";
+            flex: 0 0 auto;
+        }
+        @font-face {
+            font-family: "TRY Clother Local";
+            src: url("fonts/tryclother/TRYClother-Regular.woff2") format("woff2"),
+                 url("fonts/tryclother/TRYClother-Regular.woff") format("woff");
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: "TRY Clother Local";
+            src: url("fonts/tryclother/TRYClother-Bold.woff2") format("woff2"),
+                 url("fonts/tryclother/TRYClother-Bold.woff") format("woff");
+            font-style: normal;
+            font-weight: 500 700;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: "TRY Clother Local";
+            src: url("fonts/tryclother/TRYClother-Black.woff2") format("woff2"),
+                 url("fonts/tryclother/TRYClother-Black.woff") format("woff");
+            font-style: normal;
+            font-weight: 800 900;
+            font-display: swap;
+        }
         :root {
             --color-canvas: #f5f5f7;
             --color-surface: #ffffff;
@@ -119,7 +171,7 @@
 
         a[class*="bg-blue-600"], button[class*="bg-blue-600"], #modal-link, .filter-btn.bg-white { background: var(--color-accent) !important; border: 1px solid transparent !important; color: #fff !important; box-shadow: none !important; }
         a[class*="bg-blue-600"]:hover, button[class*="bg-blue-600"]:hover, #modal-link:hover, .filter-btn.bg-white:hover { background: var(--color-accent-hover) !important; transform: none !important; }
-        #about a, #calculator button, #modal-link { border-radius: var(--radius-pill) !important; }
+        #about a, #modal-link { border-radius: var(--radius-pill) !important; }
         #about a:not([class*="bg-blue-600"]) { color: var(--color-accent) !important; background: transparent !important; border: 1px solid var(--color-accent) !important; }
         button, a { transition: color .2s ease, background-color .2s ease, border-color .2s ease, transform .2s var(--ease-standard) !important; }
         button:active, a:active { transform: scale(.98) !important; }
@@ -128,20 +180,13 @@
         .rounded-2xl { border-radius: var(--radius-md) !important; }
         .rounded-xl, .rounded-lg { border-radius: var(--radius-sm) !important; }
         .rounded-full { border-radius: var(--radius-pill) !important; }
-        #services > div:last-child > div, #calculator .apple-glass, #contact, #portfolio-container > div, #modal-card { border-radius: var(--radius-lg) !important; }
-        #services .apple-glass, #calculator .apple-glass, #contact, #portfolio-container > div { background: var(--color-surface) !important; }
+        #services > div:last-child > div, #contact, #portfolio-container > div, #modal-card { border-radius: var(--radius-lg) !important; }
+        #services .apple-glass, #contact, #portfolio-container > div { background: var(--color-surface) !important; }
         #services .w-10, #contact .w-11, #contact .w-12 { background: var(--color-accent-soft) !important; color: var(--color-accent) !important; border-color: #c6e3ff !important; }
         #services > div:last-child .text-blue-400, #services > div:last-child .text-emerald-400, #services > div:last-child .text-amber-400, #services > div:last-child .text-purple-400 { color: var(--color-secondary) !important; }
         #services > div:last-child .bg-blue-500\/10, #services > div:last-child .bg-emerald-500\/10, #services > div:last-child .bg-amber-500\/10, #services > div:last-child .bg-purple-500\/10 { background: var(--color-surface-subtle) !important; }
         #services > div:last-child .border-blue-500\/20, #services > div:last-child .border-emerald-500\/20, #services > div:last-child .border-amber-500\/20, #services > div:last-child .border-purple-500\/20 { border-color: var(--color-border-subtle) !important; }
         main > section:not([id]) > div:last-child > div > div:first-child { color: var(--color-text) !important; }
-        #calculator label:has(input[type="radio"]) > div { background: var(--color-surface) !important; border-color: var(--color-border-subtle) !important; box-shadow: none !important; }
-        #calculator label:has(input[type="radio"]:checked) > div { background: var(--color-accent-soft) !important; border-color: var(--color-accent) !important; box-shadow: none !important; }
-        #calculator label:has(input[type="checkbox"]) { background: var(--color-surface) !important; border-color: var(--color-border-subtle) !important; box-shadow: none !important; }
-        #calculator label:has(input[type="checkbox"]:hover), #calculator label:has(input[type="checkbox"]:checked) { background: var(--color-surface) !important; border-color: var(--color-accent) !important; box-shadow: none !important; }
-        #calculator input[type="checkbox"] + div { background: var(--color-surface) !important; border-color: var(--color-border) !important; box-shadow: none !important; }
-        #calculator input[type="checkbox"]:checked + div { background: var(--color-accent) !important; border-color: var(--color-accent) !important; box-shadow: none !important; }
-        #calculator [class*="font-mono"] { font-family: var(--font-system) !important; font-variant-numeric: tabular-nums; }
         #portfolio-container { padding-bottom: var(--space-3) !important; }
         #carousel-fade-left, #carousel-fade-right { display: none !important; }
         .filter-btn { color: var(--color-secondary) !important; border-radius: var(--radius-pill) !important; }
@@ -178,6 +223,166 @@
         }
         @media (max-width: 640px) { main { padding-top: 112px !important; } main > section { margin-top: 80px !important; } h1 { font-size: 42px !important; } #about p { font-size: 17px !important; } }
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+        /* ================================================================
+           MATERIAL DESIGN 3
+           Shape, type, elevation and state tokens; original color values stay.
+           ================================================================ */
+        :root {
+            --font-system: "Gilroy Local", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --font-heading: "TRY Clother Local", "Gilroy Local", system-ui, sans-serif;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 28px;
+            --radius-pill: 999px;
+            --md-sys-shape-corner-extra-small: 4px;
+            --md-sys-shape-corner-small: 8px;
+            --md-sys-shape-corner-medium: 12px;
+            --md-sys-shape-corner-large: 16px;
+            --md-sys-shape-corner-extra-large: 28px;
+            --md-sys-state-hover: rgba(29, 29, 31, .08);
+            --md-sys-state-pressed: rgba(29, 29, 31, .12);
+            --shadow-card: none;
+            --shadow-raised: 0 1px 2px rgba(0, 0, 0, .18), 0 2px 6px rgba(0, 0, 0, .10);
+            --ease-standard: cubic-bezier(.2, 0, 0, 1);
+        }
+        :root.dark-theme {
+            --md-sys-state-hover: rgba(245, 245, 247, .08);
+            --md-sys-state-pressed: rgba(245, 245, 247, .12);
+        }
+
+        body { letter-spacing: .01em; }
+        .font-sans, [class*="font-mono"] { font-family: var(--font-system) !important; }
+        .font-heading, h1, h2, h3 { font-family: var(--font-heading) !important; }
+        .font-heading { letter-spacing: 0 !important; }
+        h1 { font-size: clamp(44px, 6.4vw, 72px) !important; line-height: 1.08 !important; letter-spacing: -.02em !important; font-weight: 600 !important; }
+        h2 { font-size: clamp(36px, 4.5vw, 52px) !important; line-height: 1.12 !important; letter-spacing: -.015em !important; font-weight: 500 !important; }
+        h3 { letter-spacing: 0 !important; font-weight: 500 !important; }
+
+        .apple-glass {
+            background: var(--color-surface-subtle) !important;
+            border: 1px solid transparent !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        .apple-card-hover { transition: box-shadow .2s var(--ease-standard), background-color .2s var(--ease-standard), transform .2s var(--ease-standard) !important; }
+        .apple-card-hover:hover { transform: none !important; border-color: transparent !important; background: var(--color-surface) !important; box-shadow: var(--shadow-raised) !important; }
+        button, a { outline-offset: 3px; }
+        button:focus-visible, a:focus-visible, label:has(input:focus-visible) > div { outline: 3px solid var(--color-accent); outline-offset: 3px; }
+        button:active, a:active { transform: none !important; }
+
+        header { padding: 8px 12px !important; }
+        header > div {
+            min-height: 64px;
+            padding: 8px 16px !important;
+            border-radius: var(--md-sys-shape-corner-extra-large) !important;
+            background: var(--color-surface-subtle) !important;
+            border: 0 !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+        }
+        .dark-theme header > div { background: var(--color-surface-subtle) !important; }
+        header nav a { min-height: 40px; display: flex; align-items: center; padding: 0 16px; border-radius: var(--radius-pill); font-weight: 500; }
+        header nav a:hover { background: var(--md-sys-state-hover); color: var(--color-text) !important; }
+        #burger-btn { width: 48px; height: 48px; border: 0 !important; background: transparent !important; }
+        #burger-btn:hover { background: var(--md-sys-state-hover) !important; }
+        #mobile-menu { top: 84px !important; padding: 16px !important; border: 0 !important; border-radius: var(--md-sys-shape-corner-extra-large) !important; box-shadow: var(--shadow-raised) !important; }
+        #mobile-menu nav { gap: 2px !important; }
+        #mobile-menu nav a { min-height: 52px; padding: 0 16px; border-radius: var(--radius-pill) !important; }
+        #mobile-menu nav a:hover { background: var(--color-accent-soft) !important; color: var(--color-text) !important; }
+
+        main { max-width: 1200px !important; padding-top: 128px !important; }
+        main > section { margin-top: 104px !important; }
+        #about { padding: 56px 24px 48px !important; border-radius: var(--md-sys-shape-corner-extra-large); background: var(--color-surface-subtle); }
+        #about > div:first-child { width: max-content; max-width: 100%; min-height: 32px; padding: 6px 12px !important; border: 0 !important; background: var(--color-accent-soft) !important; color: var(--color-accent) !important; }
+        #about p { font-size: 18px !important; line-height: 1.55 !important; }
+        section > div > span:first-child { font-size: 12px !important; line-height: 16px; letter-spacing: .1em !important; text-transform: uppercase !important; font-weight: 700 !important; }
+
+        a[class*="bg-blue-600"], button[class*="bg-blue-600"], #modal-link, .filter-btn.bg-white {
+            min-height: 40px;
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+            border: 0 !important;
+            border-radius: var(--radius-pill) !important;
+            font-weight: 500 !important;
+            box-shadow: none !important;
+        }
+        a[class*="bg-blue-600"]:hover, button[class*="bg-blue-600"]:hover, #modal-link:hover { box-shadow: var(--shadow-raised) !important; }
+        #about a { min-height: 48px; border-radius: var(--radius-pill) !important; }
+        #about a:not([class*="bg-blue-600"]) { background: transparent !important; border: 1px solid var(--color-border) !important; color: var(--color-accent) !important; }
+        #about a:not([class*="bg-blue-600"]):hover { background: var(--color-accent-soft) !important; }
+
+        .rounded-3xl { border-radius: var(--md-sys-shape-corner-extra-large) !important; }
+        .rounded-2xl { border-radius: var(--md-sys-shape-corner-large) !important; }
+        .rounded-xl, .rounded-lg { border-radius: var(--md-sys-shape-corner-medium) !important; }
+        #services > div:last-child { gap: 16px !important; }
+        #services > div:last-child > div, #portfolio-container > div {
+            border-radius: var(--md-sys-shape-corner-large) !important;
+            background: var(--color-surface-subtle) !important;
+            border: 0 !important;
+        }
+        #services > div:last-child > div { min-height: 224px; padding: 24px !important; }
+        #services .w-10, #contact .w-11, #contact .w-12 {
+            width: 48px !important; height: 48px !important;
+            border-radius: var(--md-sys-shape-corner-large) !important;
+            border: 0 !important;
+        }
+        #services [class*="rounded-full"][class*="text-[11px]"], #portfolio-container [class*="rounded-full"] {
+            min-height: 28px; display: inline-flex; align-items: center;
+        }
+        #services .pt-3.border-t { border-top: 0 !important; padding-top: 16px !important; }
+        #services .pt-3.border-t span, #portfolio-container div.flex-wrap span {
+            min-height: 32px; padding: 6px 12px !important; background: transparent !important; border: 1px solid var(--color-border) !important;
+        }
+
+        #portfolio .apple-glass:has(.filter-btn) { padding: 4px !important; border: 1px solid var(--color-border) !important; background: transparent !important; }
+        .filter-btn { min-height: 40px; padding: 0 16px !important; border-radius: var(--radius-pill) !important; font-weight: 500 !important; }
+        .filter-btn:hover { background: var(--md-sys-state-hover) !important; color: var(--color-text) !important; }
+        .filter-btn.bg-white { background: var(--color-accent-soft) !important; color: var(--color-accent) !important; box-shadow: none !important; }
+        #portfolio button[aria-label] { width: 48px; height: 48px; padding: 0 !important; display: inline-flex; align-items: center; justify-content: center; line-height: 0; border: 1px solid var(--color-border) !important; background: transparent !important; }
+        #portfolio button[aria-label] svg { display: block; flex: 0 0 auto; }
+        #portfolio button[aria-label]:hover { background: var(--md-sys-state-hover) !important; }
+        #portfolio-container > div { min-height: 300px; padding: 24px !important; }
+        #portfolio-container button { min-height: 40px; border-radius: var(--radius-pill) !important; background: transparent !important; color: var(--color-accent) !important; font-weight: 500 !important; }
+        #portfolio-container button:hover { background: var(--color-accent-soft) !important; }
+
+        main > section:not([id]) .apple-glass { min-height: 100px; border-radius: var(--md-sys-shape-corner-large) !important; }
+        #contact { padding: clamp(40px, 6vw, 72px) !important; border: 0 !important; border-radius: var(--md-sys-shape-corner-extra-large) !important; background: var(--color-surface-subtle) !important; }
+        #contact .grid > a, #contact .grid > button { min-height: 164px; padding: 24px !important; border: 0 !important; border-radius: var(--md-sys-shape-corner-large) !important; background: var(--color-surface) !important; }
+        #contact .grid > a:hover, #contact .grid > button:hover { background: var(--color-accent-soft) !important; }
+
+        footer { padding-top: 48px !important; padding-bottom: 48px !important; background: var(--color-surface-subtle) !important; border: 0 !important; }
+        #project-modal { background: rgba(29,29,31,.48) !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+        #modal-card { padding: 24px !important; border: 0 !important; border-radius: var(--md-sys-shape-corner-extra-large) !important; background: var(--color-surface) !important; box-shadow: 0 8px 24px rgba(0,0,0,.24) !important; }
+        #modal-card button { min-height: 40px; border-radius: var(--radius-pill) !important; }
+        #toast { min-height: 48px; border: 0 !important; border-radius: var(--md-sys-shape-corner-small) !important; background: var(--color-text) !important; color: var(--color-surface) !important; box-shadow: var(--shadow-raised) !important; }
+        #toast #toast-text { color: var(--color-surface) !important; }
+
+        .theme-switch { min-height: 48px; padding: 0 16px; border: 0; border-radius: var(--radius-pill); background: transparent; }
+        .theme-switch:hover { background: var(--md-sys-state-hover); }
+        .theme-switch-track { width: 52px; height: 32px; padding: 2px; border: 2px solid var(--color-secondary); background: transparent; }
+        .theme-switch-thumb { width: 24px; height: 24px; box-shadow: none; background: var(--color-secondary); }
+        .dark-theme .theme-switch-track { border-color: var(--color-accent); background: var(--color-accent); }
+        .dark-theme .theme-switch-thumb { width: 24px; height: 24px; background: var(--color-surface); transform: translateX(20px); }
+
+        @media (min-width: 1024px) {
+            header { width: 280px !important; padding: 16px !important; }
+            #desktop-menu-toggle { min-height: 56px; padding: 8px 12px; border-radius: var(--radius-pill); }
+            #desktop-menu-toggle:hover { background: var(--md-sys-state-hover) !important; }
+            #desktop-menu-panel { width: 248px; height: calc(100vh - 32px); padding: 88px 12px 16px !important; border-radius: var(--md-sys-shape-corner-extra-large) !important; background: var(--color-surface-subtle) !important; box-shadow: var(--shadow-raised) !important; }
+            #desktop-menu-panel nav { gap: 2px !important; }
+            #desktop-menu-panel nav a { min-height: 48px; padding: 0 16px; border-radius: var(--radius-pill); }
+            main { padding-left: 56px !important; padding-right: 56px !important; }
+        }
+        @media (max-width: 640px) {
+            main { padding-top: 104px !important; }
+            main > section { margin-top: 80px !important; }
+            #about { padding: 40px 20px !important; }
+            h1 { font-size: 40px !important; }
+            #services > div:last-child > div { min-height: auto; }
+        }
     </style>
 </head>
 <body class="bg-black text-white font-sans antialiased selection:bg-blue-500 selection:text-white transition-colors duration-300 relative overflow-x-hidden min-h-screen">
@@ -194,7 +399,7 @@
     <!-- Notification Toast -->
     <div id="toast" class="fixed top-24 right-4 sm:right-6 z-50 transform translate-y-[-20px] opacity-0 pointer-events-none transition-all duration-300 ease-out apple-glass glass px-5 py-3.5 rounded-2xl flex items-center gap-3 max-w-[calc(100vw-2rem)]">
         <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            <span class="material-symbols-rounded text-[20px]">check_circle</span>
         </div>
         <span id="toast-text" class="text-sm font-medium text-white truncate">Скопировано в буфер обмена</span>
     </div>
@@ -204,9 +409,7 @@
         <button type="button" id="desktop-menu-toggle" onclick="toggleDesktopMenu()" aria-label="Открыть навигацию" aria-expanded="false" class="hidden lg:flex items-center gap-2.5 font-heading font-bold text-base sm:text-lg tracking-tight text-white group-hover:text-blue-400 transition-colors">
             <img src="konata.jpg" alt="" class="w-8 h-8 rounded-full object-cover border border-white/20">
             <span>polnikii<span class="text-blue-500">.</span></span>
-            <svg class="menu-toggle-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 7h14M5 12h14M5 17h14"></path>
-            </svg>
+            <span class="material-symbols-rounded menu-toggle-icon text-[20px]" aria-hidden="true">menu</span>
         </button>
         <div id="desktop-menu-panel" class="w-full max-w-6xl mx-auto apple-glass glass rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2">
             <!-- Brand Logo with Avatar Image -->
@@ -222,7 +425,6 @@
                 <a href="#about" onclick="closeDesktopMenu()" class="hover:text-white transition-colors">Обо мне</a>
                 <a href="#services" onclick="closeDesktopMenu()" class="hover:text-white transition-colors">Услуги</a>
                 <a href="#portfolio" onclick="closeDesktopMenu()" class="hover:text-white transition-colors">Портфолио</a>
-                <a href="#calculator" onclick="closeDesktopMenu()" class="hover:text-white transition-colors">Калькулятор</a>
                 <a href="#contact" onclick="closeDesktopMenu()" class="hover:text-white transition-colors">Контакты</a>
             </nav>
 
@@ -244,13 +446,9 @@
             <!-- Mobile & Tablet Burger Button (Visible on Mobile & Tablet) -->
             <button onclick="toggleMobileMenu()" id="burger-btn" aria-label="Открыть меню" class="lg:hidden p-2 rounded-full apple-glass glass-indicator text-white hover:bg-white/10 transition-all flex items-center justify-center border border-white/10 flex-shrink-0">
                 <!-- Burger Icon -->
-                <svg id="burger-icon" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
+                <span id="burger-icon" class="material-symbols-rounded text-[24px] text-white">menu</span>
                 <!-- Close Icon -->
-                <svg id="close-icon" class="w-5 h-5 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
+                <span id="close-icon" class="material-symbols-rounded text-[24px] text-white hidden">close</span>
             </button>
         </div>
     </header>
@@ -273,23 +471,19 @@
         <nav class="flex flex-col space-y-3 text-base font-semibold text-neutral-300">
             <a href="#about" onclick="closeMobileMenu()" class="p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all flex items-center justify-between">
                 <span>Обо мне</span>
-                <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <span class="material-symbols-rounded text-[20px] text-neutral-500">chevron_right</span>
             </a>
             <a href="#services" onclick="closeMobileMenu()" class="p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all flex items-center justify-between">
                 <span>Услуги</span>
-                <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <span class="material-symbols-rounded text-[20px] text-neutral-500">chevron_right</span>
             </a>
             <a href="#portfolio" onclick="closeMobileMenu()" class="p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all flex items-center justify-between">
                 <span>Портфолио</span>
-                <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-            </a>
-            <a href="#calculator" onclick="closeMobileMenu()" class="p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all flex items-center justify-between">
-                <span>Калькулятор</span>
-                <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <span class="material-symbols-rounded text-[20px] text-neutral-500">chevron_right</span>
             </a>
             <a href="#contact" onclick="closeMobileMenu()" class="p-2 rounded-xl hover:bg-white/5 hover:text-white transition-all flex items-center justify-between">
                 <span>Контакты</span>
-                <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                <span class="material-symbols-rounded text-[20px] text-neutral-500">chevron_right</span>
             </a>
         </nav>
 
@@ -306,9 +500,7 @@
         <section id="about" class="relative pt-8 sm:pt-12 pb-8 flex flex-col items-center text-center space-y-6 sm:space-y-8">
             <!-- Top Tagline Badge -->
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full apple-glass glass text-[11px] sm:text-xs font-medium text-neutral-300 border border-white/10 shadow-sm animate-pulse-slow">
-                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                </svg>
+                <span class="material-symbols-rounded text-[18px] text-blue-400">auto_awesome</span>
                 <span>Цифровой дизайн &amp; ИТ-разработка</span>
             </div>
 
@@ -327,11 +519,7 @@
             <div class="flex flex-wrap items-center justify-center gap-3.5 pt-2 w-full sm:w-auto">
                 <a href="#portfolio" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm sm:text-base transition-all hover:shadow-glow hover:scale-105 active:scale-95 glass-indicator flex items-center justify-center gap-2">
                     <span>Смотреть работы</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                </a>
-                <a href="#calculator" class="w-full sm:w-auto px-7 py-3.5 rounded-full apple-glass glass hover:bg-white/10 text-white font-medium text-sm sm:text-base transition-all hover:scale-105 active:scale-95 border border-white/15 flex items-center justify-center gap-2">
-                    <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                    <span>Рассчитать стоимость</span>
+                    <span class="material-symbols-rounded text-[20px]">arrow_forward</span>
                 </a>
             </div>
         </section>
@@ -351,10 +539,7 @@
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center glass-indicator">
-                                <!-- Palette Icon SVG -->
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-                                </svg>
+                                <span class="material-symbols-rounded text-[24px]">palette</span>
                             </div>
                             <span class="text-[11px] font-semibold font-mono text-blue-400 px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 glass">от 1 500 ₽</span>
                         </div>
@@ -377,10 +562,7 @@
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center glass-indicator">
-                                <!-- Minecraft Cube Icon SVG -->
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-                                </svg>
+                                <span class="material-symbols-rounded text-[24px]">deployed_code</span>
                             </div>
                             <span class="text-[11px] font-semibold font-mono text-emerald-400 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 glass">от 1 000 ₽</span>
                         </div>
@@ -403,10 +585,7 @@
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center glass-indicator">
-                                <!-- Bot Terminal Icon SVG -->
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
+                                <span class="material-symbols-rounded text-[24px]">smart_toy</span>
                             </div>
                             <span class="text-[11px] font-semibold font-mono text-purple-400 px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 glass">от 500 ₽</span>
                         </div>
@@ -429,11 +608,7 @@
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center glass-indicator">
-                                <!-- Server Wrench Icon SVG -->
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
+                                <span class="material-symbols-rounded text-[24px]">settings</span>
                             </div>
                             <span class="text-[11px] font-semibold font-mono text-amber-400 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 glass">40% с доната</span>
                         </div>
@@ -474,10 +649,10 @@
                     <!-- Carousel Nav Arrows -->
                     <div class="flex items-center gap-2">
                         <button onclick="scrollPortfolio(-1)" aria-label="Предыдущий слайд" class="p-2.5 rounded-full apple-glass glass-indicator text-neutral-300 hover:text-white hover:bg-white/10 transition-all border border-white/10">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            <span class="material-symbols-rounded text-[24px]">chevron_left</span>
                         </button>
                         <button onclick="scrollPortfolio(1)" aria-label="Следующий слайд" class="p-2.5 rounded-full apple-glass glass-indicator text-neutral-300 hover:text-white hover:bg-white/10 transition-all border border-white/10">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            <span class="material-symbols-rounded text-[24px]">chevron_right</span>
                         </button>
                     </div>
                 </div>
@@ -495,161 +670,6 @@
             </div>
         </section>
 
-        <!-- Price & Time Order Calculator Section -->
-        <section id="calculator" class="space-y-8">
-            <div class="space-y-3 text-center sm:text-left">
-                <span class="text-xs font-semibold uppercase tracking-wider text-blue-400">Калькулятор проекта</span>
-                <h2 class="text-3xl sm:text-5xl font-heading font-bold text-white tracking-tight">Рассчитай свой проект</h2>
-                <p class="text-neutral-400 text-base max-w-xl">Отметь нужные опции, чтобы получить ориентировочную стоимость и срок выполнения.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Interactive Form Controls -->
-                <div class="lg:col-span-2 space-y-6">
-
-                    <!-- Category Selection -->
-                    <div class="space-y-3">
-                        <label class="text-sm font-semibold text-white">1. Тип работы:</label>
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
-                            <label class="cursor-pointer">
-                                <input type="radio" name="calc-type" value="web" checked onchange="updateCalc()" class="peer hidden">
-                                <div class="p-3 sm:p-3.5 rounded-2xl apple-glass glass border border-white/10 peer-checked:border-blue-500 peer-checked:bg-blue-500/10 text-center transition-all peer-checked:glass-indicator">
-                                    <div class="text-xs font-semibold text-white">Веб-дизайн</div>
-                                    <div class="text-[11px] text-neutral-400 mt-1">от 1 500 ₽</div>
-                                </div>
-                            </label>
-
-                            <label class="cursor-pointer">
-                                <input type="radio" name="calc-type" value="minecraft" onchange="updateCalc()" class="peer hidden">
-                                <div class="p-3 sm:p-3.5 rounded-2xl apple-glass glass border border-white/10 peer-checked:border-emerald-500 peer-checked:bg-emerald-500/10 text-center transition-all peer-checked:glass-indicator">
-                                    <div class="text-xs font-semibold text-white">Minecraft</div>
-                                    <div class="text-[11px] text-neutral-400 mt-1">от 1 000 ₽</div>
-                                </div>
-                            </label>
-
-                            <label class="cursor-pointer">
-                                <input type="radio" name="calc-type" value="bot" onchange="updateCalc()" class="peer hidden">
-                                <div class="p-3 sm:p-3.5 rounded-2xl apple-glass glass border border-white/10 peer-checked:border-purple-500 peer-checked:bg-purple-500/10 text-center transition-all peer-checked:glass-indicator">
-                                    <div class="text-xs font-semibold text-white">Боты</div>
-                                    <div class="text-[11px] text-neutral-400 mt-1">от 500 ₽</div>
-                                </div>
-                            </label>
-
-                            <label class="cursor-pointer">
-                                <input type="radio" name="calc-type" value="techadmin" onchange="updateCalc()" class="peer hidden">
-                                <div class="p-3 sm:p-3.5 rounded-2xl apple-glass glass border border-white/10 peer-checked:border-amber-500 peer-checked:bg-amber-500/10 text-center transition-all peer-checked:glass-indicator">
-                                    <div class="text-xs font-semibold text-white">Тех. Админ</div>
-                                    <div class="text-[11px] text-amber-400 mt-1">40% с доната</div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Custom Liquid Glass Checkboxes -->
-                    <div class="space-y-3">
-                        <label class="text-sm font-semibold text-white">2. Дополнительные опции:</label>
-                        <div class="space-y-2.5">
-
-                            <!-- Option 1 -->
-                            <label class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl apple-glass glass border border-white/10 cursor-pointer hover:bg-white/5 transition-all group">
-                                <div class="flex items-center gap-3">
-                                    <div class="relative flex items-center justify-center flex-shrink-0">
-                                        <input type="checkbox" id="opt-fast" onchange="updateCalc()" class="peer hidden">
-                                        <div class="w-5 h-5 rounded-lg border border-white/20 apple-glass glass-indicator peer-checked:bg-blue-600 peer-checked:border-blue-500 flex items-center justify-center transition-all">
-                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs sm:text-sm font-medium text-white group-hover:text-blue-300 transition-colors">Срочное выполнение</div>
-                                        <div class="text-[11px] sm:text-xs text-neutral-400">Приоритетная разработка за 24 часа</div>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-mono text-blue-400 font-semibold px-2.5 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 glass flex-shrink-0 ml-2">+35%</span>
-                            </label>
-
-                            <!-- Option 2 -->
-                            <label class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl apple-glass glass border border-white/10 cursor-pointer hover:bg-white/5 transition-all group">
-                                <div class="flex items-center gap-3">
-                                    <div class="relative flex items-center justify-center flex-shrink-0">
-                                        <input type="checkbox" id="opt-db" onchange="updateCalc()" class="peer hidden">
-                                        <div class="w-5 h-5 rounded-lg border border-white/20 apple-glass glass-indicator peer-checked:bg-emerald-600 peer-checked:border-emerald-500 flex items-center justify-center transition-all">
-                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs sm:text-sm font-medium text-white group-hover:text-emerald-300 transition-colors">Интеграция с Базой Данных / API</div>
-                                        <div class="text-[11px] sm:text-xs text-neutral-400">MySQL, PostgreSQL, внешние сервисы</div>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-mono text-emerald-400 font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 glass flex-shrink-0 ml-2">+1 500 ₽</span>
-                            </label>
-
-                            <!-- Option 3 -->
-                            <label class="flex items-center justify-between p-3.5 sm:p-4 rounded-2xl apple-glass glass border border-white/10 cursor-pointer hover:bg-white/5 transition-all group">
-                                <div class="flex items-center gap-3">
-                                    <div class="relative flex items-center justify-center flex-shrink-0">
-                                        <input type="checkbox" id="opt-support" onchange="updateCalc()" class="peer hidden">
-                                        <div class="w-5 h-5 rounded-lg border border-white/20 apple-glass glass-indicator peer-checked:bg-purple-600 peer-checked:border-purple-500 flex items-center justify-center transition-all">
-                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="text-xs sm:text-sm font-medium text-white group-hover:text-purple-300 transition-colors">Техподдержка &amp; Хостинг (1 месяц)</div>
-                                        <div class="text-[11px] sm:text-xs text-neutral-400">Настройка сервера, деплой и правки</div>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-mono text-purple-400 font-semibold px-2.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 glass flex-shrink-0 ml-2">+1 000 ₽</span>
-                            </label>
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Calculator Summary Card -->
-                <div class="apple-glass glass p-6 sm:p-8 rounded-3xl border border-white/10 flex flex-col justify-between space-y-6">
-                    <div class="space-y-6">
-                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
-                            <span class="text-sm font-semibold text-neutral-300">Расчет стоимости</span>
-                            <span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></span>
-                        </div>
-
-                        <div class="space-y-4">
-                            <div>
-                                <div class="text-xs text-neutral-400 uppercase tracking-wider">Примерная цена</div>
-                                <div id="calc-price" class="text-3xl sm:text-4xl font-heading font-extrabold text-white mt-1">от 1 500 ₽</div>
-                            </div>
-
-                            <div>
-                                <div class="text-xs text-neutral-400 uppercase tracking-wider">Срок выполнения</div>
-                                <div id="calc-days" class="text-lg sm:text-xl font-heading font-semibold text-blue-400 mt-1">1–3 дня</div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-2xl bg-white/5 border border-white/5 text-xs text-neutral-400 space-y-2 glass">
-                            <div class="flex items-center gap-2 text-white font-medium">
-                                <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                <span>Гарантия качества</span>
-                            </div>
-                            <p>Цена ориентировочная. Точная стоимость рассчитывается индивидуально в зависимости от ТЗ.</p>
-                        </div>
-                    </div>
-
-                    <button onclick="sendCalcToTelegram()" class="w-full py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm transition-all hover:scale-105 active:scale-95 glass-indicator flex items-center justify-center gap-2">
-                        <!-- Telegram Icon -->
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.56 8.16l-2.03 9.56c-.15.68-.56.84-1.13.53l-3.1-2.28-1.5 1.44c-.16.16-.3.3-.61.3l.22-3.16 5.76-5.2c.25-.22-.05-.34-.39-.12l-7.12 4.48-3.07-.96c-.67-.21-.68-.67.14-.99l12.01-4.63c.56-.21 1.04.13.88.83z"/></svg>
-                        <span>Заказать в Telegram</span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
         <!-- Tech Stack Grid Section -->
         <section class="space-y-8">
             <div class="text-center space-y-3">
@@ -658,27 +678,27 @@
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-4">
-                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5 flex flex-col items-center justify-center">
                     <div class="text-blue-400 font-mono text-xs sm:text-sm font-bold">HTML &amp; CSS</div>
                     <div class="text-[11px] sm:text-xs text-neutral-400">Tailwind / Flexbox</div>
                 </div>
-                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5 flex flex-col items-center justify-center">
                     <div class="text-amber-400 font-mono text-xs sm:text-sm font-bold">JavaScript</div>
                     <div class="text-[11px] sm:text-xs text-neutral-400">ES6+ / Async</div>
                 </div>
-                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5 flex flex-col items-center justify-center">
                     <div class="text-emerald-400 font-mono text-xs sm:text-sm font-bold">Java</div>
                     <div class="text-[11px] sm:text-xs text-neutral-400">Spigot / Paper API</div>
                 </div>
-                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5 flex flex-col items-center justify-center">
                     <div class="text-purple-400 font-mono text-xs sm:text-sm font-bold">Python</div>
                     <div class="text-[11px] sm:text-xs text-neutral-400">Aiogram 3 / Asyncio</div>
                 </div>
-                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5 flex flex-col items-center justify-center">
                     <div class="text-indigo-400 font-mono text-xs sm:text-sm font-bold">Node.js</div>
                     <div class="text-[11px] sm:text-xs text-neutral-400">Discord.js</div>
                 </div>
-                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5">
+                <div class="apple-glass glass p-3.5 sm:p-4 rounded-2xl text-center space-y-1.5 sm:space-y-2 apple-card-hover border border-white/5 flex flex-col items-center justify-center">
                     <div class="text-rose-400 font-mono text-xs sm:text-sm font-bold">Figma</div>
                     <div class="text-[11px] sm:text-xs text-neutral-400">UI / UX Prototyping</div>
                 </div>
@@ -761,17 +781,13 @@
                     <a href="#about" class="hover:text-white transition-colors">Обо мне</a>
                     <a href="#services" class="hover:text-white transition-colors">Услуги</a>
                     <a href="#portfolio" class="hover:text-white transition-colors">Портфолио</a>
-                    <a href="#calculator" class="hover:text-white transition-colors">Калькулятор</a>
                     <a href="#contact" class="hover:text-white transition-colors">Контакты</a>
                 </div>
             </div>
 
             <!-- Bottom Copyright Bar -->
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500 text-center sm:text-left">
+            <div class="flex items-center justify-center text-xs text-neutral-500 text-center">
                 <div>&copy; 2026 polnikii. Все права защищены.</div>
-                <div class="flex items-center gap-4">
-                    <span>Сделано с акцентом на качество и производительность</span>
-                </div>
             </div>
         </div>
     </footer>
@@ -785,7 +801,7 @@
                     <h3 id="modal-title" class="text-2xl font-heading font-bold text-white mt-2">Title</h3>
                 </div>
                 <button onclick="closeModal()" class="p-2 rounded-full bg-white/5 hover:bg-white/10 text-neutral-400 hover:text-white transition-all glass-indicator">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <span class="material-symbols-rounded text-[24px]">close</span>
                 </button>
             </div>
 
@@ -1063,7 +1079,7 @@
                 container.innerHTML = `
                     <div class="w-full apple-glass glass rounded-3xl p-8 sm:p-12 text-center space-y-4 border border-white/10">
                         <div class="w-12 h-12 rounded-full bg-blue-500/10 text-blue-400 mx-auto flex items-center justify-center glass-indicator">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                            <span class="material-symbols-rounded text-[28px]">inventory_2</span>
                         </div>
                         <div class="space-y-1">
                             <h3 class="text-xl font-heading font-bold text-white">Портфолио пополняется</h3>
@@ -1105,7 +1121,7 @@
                         </div>
                         <button onclick="viewProjectDetails('${p.id}')" class="w-full py-2.5 rounded-2xl bg-white/5 hover:bg-white/10 text-white text-xs font-medium transition-all flex items-center justify-center gap-2 glass-indicator">
                             <span>Подробнее</span>
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            <span class="material-symbols-rounded text-[18px]">arrow_forward</span>
                         </button>
                     </div>
                 `;
@@ -1211,7 +1227,7 @@
 
             const list = document.getElementById('modal-features');
             if (p.features && p.features.length) {
-                        list.innerHTML = p.features.map(f => `<li class="flex items-center gap-2"><svg class="w-4 h-4 text-blue-500 flex-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 13 4 4L19 7"></path></svg><span>${escapeHtml(f)}</span></li>`).join('');
+                        list.innerHTML = p.features.map(f => `<li class="flex items-center gap-2"><span class="material-symbols-rounded text-[18px] text-blue-500" aria-hidden="true">check_circle</span><span>${escapeHtml(f)}</span></li>`).join('');
             } else {
                 list.innerHTML = '<li>Кастомное решение под ТЗ заказчика</li>';
             }
@@ -1263,62 +1279,6 @@
 
         function escapeHtml(text) {
             return text ? String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") : '';
-        }
-
-        // ----------------------------------------------------
-        // Calculator Logic
-        // ----------------------------------------------------
-        function updateCalc() {
-            const typeRadio = document.querySelector('input[name="calc-type"]:checked');
-            if (!typeRadio) return;
-            const type = typeRadio.value;
-            
-            const fast = document.getElementById('opt-fast').checked;
-            const db = document.getElementById('opt-db').checked;
-            const support = document.getElementById('opt-support').checked;
-
-            if (type === 'techadmin') {
-                document.getElementById('calc-price').textContent = '40% с доната';
-                document.getElementById('calc-days').textContent = 'Постоянное сотрудничество';
-                return;
-            }
-
-            let basePrice = 1500;
-            let days = '1–3 дня';
-
-            if (type === 'minecraft') {
-                basePrice = 1000;
-                days = '1–4 дня';
-            } else if (type === 'bot') {
-                basePrice = 500;
-                days = '1–2 дня';
-            }
-
-            if (db) basePrice += 1500;
-            if (support) basePrice += 1000;
-            if (fast) {
-                basePrice = Math.round(basePrice * 1.35);
-                days = 'До 24 часов (Срочно)';
-            }
-
-            document.getElementById('calc-price').textContent = `от ${basePrice.toLocaleString('ru-RU')} ₽`;
-            document.getElementById('calc-days').textContent = days;
-        }
-
-        function sendCalcToTelegram() {
-            const typeMap = { 
-                'web': 'Веб-дизайн (от 1 500 ₽)', 
-                'minecraft': 'Minecraft Проект (от 1 000 ₽)', 
-                'bot': 'Telegram/Discord Бот (от 500 ₽)',
-                'techadmin': 'Тех. Админ Minecraft (40% с доната)'
-            };
-            const typeRadio = document.querySelector('input[name="calc-type"]:checked');
-            const type = typeRadio ? typeRadio.value : 'web';
-            const price = document.getElementById('calc-price').textContent;
-            
-            const msg = `Привет! Хочу заказать услугу: ${typeMap[type]} (${price}).`;
-            const url = `https://t.me/polnikii?text=${encodeURIComponent(msg)}`;
-            window.open(url, '_blank');
         }
 
         // Initial render on page load
