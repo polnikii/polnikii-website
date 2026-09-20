@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>полники :: визитка</title>
+<link rel="icon" type="image/png" href="webico.png">
+<link rel="apple-touch-icon" href="webico.png">
+<meta name="description" content="полники — разработка telegram-ботов и веб-сайтов.">
+
+<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap'>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js'></script>
+
+<style>
+:root {
+  --color-bg-primary:    #F0E7D5;
+  --color-bg-secondary:  #E5DBC4;
+  --color-accent:        #212842;
+  --color-text-primary:  #212842;
+  --color-text-secondary:#6B7390;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+::selection { background: var(--color-accent); color: var(--color-bg-primary); }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+h1, h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+/* ─── HERO ────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: clamp(2rem, 5vw, 5rem);
+}
+
+.hero__content { text-align: left; }
+
+.hero__title {
+  font-size: clamp(4rem, 18vw, 16rem);
+  line-height: 0.82;
+  letter-spacing: -0.05em;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+#dot {
+  display: none;
+  color: var(--color-accent);
+}
+
+#dot.blink {
+  display: inline-block;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ─── ABOUT ───────────────────────────────────────────── */
+.about {
+  padding: 5rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.about__inner {
+  max-width: 1200px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about__label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary);
+  padding-top: 0.5rem;
+}
+
+.about__text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 3.2vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ─── WORK ───────────────────────────────────────────── */
+.work {
+  padding: 4rem 0 6rem;
+}
+
+.work__head {
+  max-width: 100%;
+  margin: 0 0 2rem;
+  padding: 0 clamp(2rem, 5vw, 5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding-bottom: 2rem;
+}
+
+.work__head h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+
+.work__carousel {
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+  gap: 2.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 clamp(2rem, 5vw, 5rem) 2rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+.work__carousel::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+.project {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 280px;
+  flex: 0 0 clamp(300px, 35vw, 460px);
+  padding: 2.5rem;
+  scroll-snap-align: start;
+  transition: background-color 300ms ease;
+}
+
+.project:hover, .project:focus-visible {
+  background: var(--color-bg-secondary);
+  outline: none;
+}
+
+.project__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.project__name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.65rem;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.project__type {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  text-align: right;
+  white-space: nowrap;
+  padding-top: 0.2rem;
+}
+
+.project__desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin-bottom: 2.5rem;
+  flex-grow: 1;
+}
+
+.project__btn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-primary);
+}
+
+.project__btn-icon {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.5px;
+  transition: transform 300ms ease;
+}
+
+.project:hover .project__btn-icon,
+.project:focus-visible .project__btn-icon {
+  transform: translateX(5px);
+}
+
+/* ─── CONTACT ────────────────────────────────────────── */
+.contact {
+  padding: 5rem 2rem;
+}
+
+.contact__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.contact__image {
+  width: 100%;
+  height: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  filter: grayscale(0.2) contrast(1.05);
+}
+
+.contact__list { display: flex; flex-direction: column; }
+
+.contact__link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+  transition: color 300ms ease, padding-left 400ms ease;
+}
+
+.contact__link:hover, .contact__link:focus-visible {
+  padding-left: 1.5rem;
+  color: var(--color-accent);
+  outline: none;
+}
+
+.contact__link-label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+.contact__link-value {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  white-space: nowrap;
+}
+
+.contact__link:hover .contact__link-value,
+.contact__link:focus-visible .contact__link-value { color: var(--color-accent); }
+
+.contact__link-icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2px;
+  transition: transform 300ms ease;
+}
+
+.contact__link:hover .contact__link-icon,
+.contact__link:focus-visible .contact__link-icon {
+  transform: translate(3px, -3px);
+}
+
+/* ─── MOBILE ─────────────────────────────────────────── */
+@media (max-width: 880px) {
+  .hero { padding: 2rem; }
+  .hero__title { font-size: clamp(2.75rem, 16vw, 6rem); }
+  .about { padding: 4rem 1.5rem; }
+  .about__inner { grid-template-columns: 1fr; gap: 2rem; }
+  .work { padding: 3rem 0 4rem; }
+  .work__head { padding: 0 1.5rem; margin-bottom: 2rem; }
+  .work__carousel { padding: 0 1.5rem 2rem; gap: 1.5rem; }
+  .project { flex: 0 0 280px; min-height: 260px; padding: 2rem; }
+  .contact { padding: 4rem 1.5rem; }
+  .contact__inner { grid-template-columns: 1fr; gap: 3rem; }
+  .contact__image { max-height: 300px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; }
+  #dot.blink { animation: none; }
+}
+</style>
+</head>
+<body>
+
+  <!-- ─── HERO ──────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">
+        <span id="typewriter"></span><span id="dot">.</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─────────────────────────────────────────── -->
+  <section class="about">
+    <div class="about__inner">
+      <span class="about__label">о себе</span>
+      <p class="about__text">
+        никита 16 лет делаю тг ботов<br>
+        и веб-сайты, все.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── WORK ─────────────────────────────────────────── -->
+  <section class="work">
+    <header class="work__head">
+      <h2>портфолио</h2>
+    </header>
+
+    <div class="work__carousel" id="workCarousel">
+
+      <!--
+      ════════════════════════════════════════════════════════════
+       ШАБЛОН НОВОГО ПРОЕКТА
+       скопируй блок ниже, вставь в этот карусель и заполни:
+
+       <a class="project" href="ССЫЛКА_НА_ПРОЕКТ" target="_blank" rel="noopener">
+         <div class="project__head">
+           <span class="project__name">
+             <i data-lucide="ИМЯ_ИКОНКИ" class="project__icon" style="width:18px;height:18px;stroke-width:2.5px"></i>
+             НАЗВАНИЕ
+           </span>
+           <span class="project__type">ТИП ПРОЕКТА</span>
+         </div>
+         <p class="project__desc">
+           КРАТКОЕ ОПИСАНИЕ ТОГО, ЧТО ДЕЛАЕТ ПРОЕКТ И КАКИЕ ЗАДАЧИ РЕШАЕТ
+         </p>
+         <span class="project__btn">
+           подробнее
+           <i data-lucide="arrow-right" class="project__btn-icon"></i>
+         </span>
+       </a>
+
+       иконки lucide по типам:
+         telegram bot → send, message-square
+         website      → globe, layout
+         код/сервис   → code-2, terminal
+      ════════════════════════════════════════════════════════════
+      -->
+
+      <a class="project" href="https://t.me/stellarshop_pbot" target="_blank" rel="noopener">
+        <div class="project__head">
+          <span class="project__name">
+            <i data-lucide="sparkles" style="width:18px;height:18px;stroke-width:2.5px"></i>
+            StellarShop
+          </span>
+          <span class="project__type">telegram bot</span>
+        </div>
+        <p class="project__desc">
+          бот для продажи звёзд, тг прем и тонов внутри телеграм.
+        </p>
+        <span class="project__btn">
+          подробнее
+          <i data-lucide="arrow-right" class="project__btn-icon"></i>
+        </span>
+      </a>
+
+      <a class="project" href="https://sakurax.vercel.app" target="_blank" rel="noopener">
+        <div class="project__head">
+          <span class="project__name">
+            <i data-lucide="globe" style="width:18px;height:18px;stroke-width:2.5px"></i>
+            SakuraX
+          </span>
+          <span class="project__type">website</span>
+        </div>
+        <p class="project__desc">
+          лендинг для игрового майнкрафт-проекта.
+        </p>
+        <span class="project__btn">
+          подробнее
+          <i data-lucide="arrow-right" class="project__btn-icon"></i>
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ───────────────────────────────────────── -->
+  <section class="contact">
+    <div class="contact__inner">
+      <div>
+        <img src="contact.jpg" alt="contract" class="contact__image">
+      </div>
+      <div class="contact__list">
+        <a class="contact__link" href="https://t.me/polnikii" target="_blank" rel="noopener">
+          <span class="contact__link-label">telegram</span>
+          <span class="contact__link-value">
+            @polnikii
+            <i data-lucide="arrow-up-right" class="contact__link-icon"></i>
+          </span>
+        </a>
+        <a class="contact__link" href="https://github.com/polnikii" target="_blank" rel="noopener">
+          <span class="contact__link-label">github</span>
+          <span class="contact__link-value">
+            /polnikii
+            <i data-lucide="arrow-up-right" class="contact__link-icon"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    if (window.lucide) lucide.createIcons();
+
+    const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ─── ПЕЧАТАНИЕ ТЕКСТА И МИГАНИЕ ТОЧКИ ──────────────────
+    const tw = document.getElementById('typewriter');
+    const dot = document.getElementById('dot');
+    const text = "polnikii";
+
+    if (prefersReduce) {
+      tw.textContent = text;
+      dot.style.display = 'inline-block';
+    } else {
+      let i = 0;
+      function type() {
+        if (i <= text.length) {
+          tw.textContent = text.slice(0, i);
+          i++;
+          setTimeout(type, 130); // скорость печати
+        } else {
+          dot.classList.add('blink');
+        }
+      }
+      setTimeout(type, 400); // задержка перед стартом
+    }
+
+    // ─── АНИМАЦИИ ПОЯВЛЕНИЯ ────────────────────────────────
+    if (!prefersReduce && window.gsap) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Анимация блока "о себе"
+      gsap.from('.about__inner > *', {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: '.about',
+          start: 'top 80%'
+        }
+      });
+
+      // Анимация заголовка портфолио
+      gsap.from('.work__head h2', {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.work__head',
+          start: 'top 85%'
+        }
+      });
+
+      // Анимация карточек проектов
+      gsap.from('.project', {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: '.work__carousel',
+          start: 'top 85%'
+        }
+      });
+
+      // Анимация блока контактов
+      gsap.from('.contact__inner > div', {
+        y: 30,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: '.contact',
+          start: 'top 80%'
+        }
+      });
+    }
+  </script>
+</body>
+</html>
