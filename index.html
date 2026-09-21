@@ -3,10 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>полники :: визитка</title>
+<title>полники — telegram-боты и веб-сайты</title>
 <link rel="icon" type="image/png" href="webico.png">
 <link rel="apple-touch-icon" href="webico.png">
 <meta name="description" content="полники — разработка telegram-ботов и веб-сайтов.">
+<meta name="theme-color" content="#F0E7D5">
+<link rel="canonical" href="https://polnikii.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="полники — telegram-боты и веб-сайты">
+<meta property="og:description" content="Разработка telegram-ботов и веб-сайтов.">
+<meta property="og:url" content="https://polnikii.vercel.app/">
+<meta property="og:image" content="https://polnikii.vercel.app/webico.png">
+<meta name="twitter:card" content="summary">
 
 <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap'>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
@@ -35,6 +44,7 @@ body {
 ::selection { background: var(--color-accent); color: var(--color-bg-primary); }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
+a:focus-visible { outline: 3px solid var(--color-text-primary); outline-offset: 5px; }
 
 h1, h2 {
   font-family: 'Montserrat', sans-serif;
@@ -47,21 +57,56 @@ h1, h2 {
 .hero {
   position: relative;
   min-height: 100vh;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
   padding: clamp(2rem, 5vw, 5rem);
 }
 
 .hero__content { text-align: left; }
 
 .hero__title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: clamp(4rem, 18vw, 16rem);
   line-height: 0.82;
   letter-spacing: -0.05em;
   display: inline-flex;
   align-items: baseline;
+  white-space: nowrap;
 }
+
+.hero__cta {
+  position: absolute;
+  left: clamp(2rem, 5vw, 5rem);
+  bottom: clamp(2rem, 5vw, 5rem);
+  display: inline-flex;
+  align-items: center;
+  font-weight: 800;
+  font-size: 1rem;
+  padding-bottom: 0.6rem;
+}
+
+.hero__cta::before,
+.project__btn::before,
+.contact__link-label::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms ease;
+}
+
+.hero__cta:hover::before,
+.hero__cta:focus-visible::before,
+.project:hover .project__btn::before,
+.project:focus-visible .project__btn::before,
+.contact__link:hover .contact__link-label::before,
+.contact__link:focus-visible .contact__link-label::before { transform: scaleX(1); }
 
 #dot {
   display: none;
@@ -111,6 +156,14 @@ h1, h2 {
   letter-spacing: -0.02em;
 }
 
+.about__services {
+  grid-column: 2;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
 /* ─── WORK ───────────────────────────────────────────── */
 .work {
   padding: 4rem 0 6rem;
@@ -127,6 +180,13 @@ h1, h2 {
 }
 
 .work__head h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+
+.work__hint {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
 
 .work__carousel {
   max-width: 100%;
@@ -155,7 +215,6 @@ h1, h2 {
 
 .project:hover, .project:focus-visible {
   background: var(--color-bg-secondary);
-  outline: none;
 }
 
 .project__head {
@@ -192,31 +251,28 @@ h1, h2 {
   font-size: 1rem;
   line-height: 1.5;
   color: var(--color-text-secondary);
-  margin-bottom: 2.5rem;
+  margin-bottom: 0.75rem;
   flex-grow: 1;
 }
 
+.project__scope {
+  margin: 0 0 2.5rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
 .project__btn {
+  position: relative;
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: 1rem;
   letter-spacing: -0.01em;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
   color: var(--color-text-primary);
-}
-
-.project__btn-icon {
-  width: 18px;
-  height: 18px;
-  stroke-width: 2.5px;
-  transition: transform 300ms ease;
-}
-
-.project:hover .project__btn-icon,
-.project:focus-visible .project__btn-icon {
-  transform: translateX(5px);
+  padding-bottom: 0.6rem;
 }
 
 /* ─── CONTACT ────────────────────────────────────────── */
@@ -254,15 +310,16 @@ h1, h2 {
 .contact__link:hover, .contact__link:focus-visible {
   padding-left: 1.5rem;
   color: var(--color-accent);
-  outline: none;
 }
 
 .contact__link-label {
+  position: relative;
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: 2rem;
   letter-spacing: -0.01em;
   line-height: 1;
+  padding-bottom: 0.6rem;
 }
 
 .contact__link-value {
@@ -279,24 +336,13 @@ h1, h2 {
 .contact__link:hover .contact__link-value,
 .contact__link:focus-visible .contact__link-value { color: var(--color-accent); }
 
-.contact__link-icon {
-  width: 16px;
-  height: 16px;
-  stroke-width: 2px;
-  transition: transform 300ms ease;
-}
-
-.contact__link:hover .contact__link-icon,
-.contact__link:focus-visible .contact__link-icon {
-  transform: translate(3px, -3px);
-}
-
 /* ─── MOBILE ─────────────────────────────────────────── */
 @media (max-width: 880px) {
   .hero { padding: 2rem; }
   .hero__title { font-size: clamp(2.75rem, 16vw, 6rem); }
   .about { padding: 4rem 1.5rem; }
   .about__inner { grid-template-columns: 1fr; gap: 2rem; }
+  .about__services { grid-column: auto; margin-top: -1rem; }
   .work { padding: 3rem 0 4rem; }
   .work__head { padding: 0 1.5rem; margin-bottom: 2rem; }
   .work__carousel { padding: 0 1.5rem 2rem; gap: 1.5rem; }
@@ -315,11 +361,15 @@ h1, h2 {
 <body>
 
   <!-- ─── HERO ──────────────────────────────────────────── -->
-  <section class="hero">
+  <main>
+  <section class="hero" aria-labelledby="page-title">
     <div class="hero__content">
-      <h1 class="hero__title">
+      <h1 class="hero__title" id="page-title">
         <span id="typewriter"></span><span id="dot">.</span>
       </h1>
+      <a class="hero__cta" href="https://t.me/polnikii" target="_blank" rel="noopener" aria-label="Написать полники в Telegram">
+        обсудить проект
+      </a>
     </div>
   </section>
 
@@ -331,16 +381,18 @@ h1, h2 {
         никита 16 лет делаю тг ботов<br>
         и веб-сайты, все.
       </p>
+      <p class="about__services">боты / лендинги / интерфейсы</p>
     </div>
   </section>
 
   <!-- ─── WORK ─────────────────────────────────────────── -->
   <section class="work">
     <header class="work__head">
-      <h2>портфолио</h2>
+      <h2 id="work-title">портфолио</h2>
+      <span class="work__hint" id="work-hint">2 проекта · свайпни →</span>
     </header>
 
-    <div class="work__carousel" id="workCarousel">
+    <div class="work__carousel" id="workCarousel" aria-labelledby="work-title" aria-describedby="work-hint">
 
       <!--
       ════════════════════════════════════════════════════════════
@@ -359,8 +411,7 @@ h1, h2 {
            КРАТКОЕ ОПИСАНИЕ ТОГО, ЧТО ДЕЛАЕТ ПРОЕКТ И КАКИЕ ЗАДАЧИ РЕШАЕТ
          </p>
          <span class="project__btn">
-           подробнее
-           <i data-lucide="arrow-right" class="project__btn-icon"></i>
+           открыть проект
          </span>
        </a>
 
@@ -379,12 +430,10 @@ h1, h2 {
           </span>
           <span class="project__type">telegram bot</span>
         </div>
-        <p class="project__desc">
-          бот для продажи звёзд, тг прем и тонов внутри телеграм.
-        </p>
+        <p class="project__desc">Продажа звёзд, Telegram Premium и TON внутри Telegram.</p>
+        <p class="project__scope">задача: сделать покупку внутри привычного мессенджера</p>
         <span class="project__btn">
-          подробнее
-          <i data-lucide="arrow-right" class="project__btn-icon"></i>
+          открыть проект
         </span>
       </a>
 
@@ -396,12 +445,10 @@ h1, h2 {
           </span>
           <span class="project__type">website</span>
         </div>
-        <p class="project__desc">
-          лендинг для игрового майнкрафт-проекта.
-        </p>
+        <p class="project__desc">Лендинг для игрового Minecraft-проекта.</p>
+        <p class="project__scope">задача: коротко представить проект и провести к действию</p>
         <span class="project__btn">
-          подробнее
-          <i data-lucide="arrow-right" class="project__btn-icon"></i>
+          открыть проект
         </span>
       </a>
 
@@ -412,26 +459,25 @@ h1, h2 {
   <section class="contact">
     <div class="contact__inner">
       <div>
-        <img src="contact.jpg" alt="contract" class="contact__image">
+        <img src="contact.jpg" alt="" class="contact__image">
       </div>
       <div class="contact__list">
         <a class="contact__link" href="https://t.me/polnikii" target="_blank" rel="noopener">
           <span class="contact__link-label">telegram</span>
           <span class="contact__link-value">
             @polnikii
-            <i data-lucide="arrow-up-right" class="contact__link-icon"></i>
           </span>
         </a>
         <a class="contact__link" href="https://github.com/polnikii" target="_blank" rel="noopener">
           <span class="contact__link-label">github</span>
           <span class="contact__link-value">
             /polnikii
-            <i data-lucide="arrow-up-right" class="contact__link-icon"></i>
           </span>
         </a>
       </div>
     </div>
   </section>
+  </main>
 
   <script>
     if (window.lucide) lucide.createIcons();
