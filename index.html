@@ -75,10 +75,18 @@ h1, h2 {
   white-space: nowrap;
 }
 
-.hero__cta {
+.hero__actions {
   position: absolute;
   left: clamp(2rem, 5vw, 5rem);
   bottom: clamp(2rem, 5vw, 5rem);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.hero__cta {
+  position: relative;
   display: inline-flex;
   align-items: center;
   font-weight: 800;
@@ -367,9 +375,14 @@ h1, h2 {
       <h1 class="hero__title" id="page-title">
         <span id="typewriter"></span><span id="dot">.</span>
       </h1>
-      <a class="hero__cta" href="https://t.me/polnikii" target="_blank" rel="noopener" aria-label="Написать полники в Telegram">
-        обсудить проект
-      </a>
+      <div class="hero__actions">
+        <a class="hero__cta" href="https://t.me/polnikii" target="_blank" rel="noopener" aria-label="Написать полники в Telegram">
+          обсудить проект
+        </a>
+        <a class="hero__cta" href="https://t.me/VouchRepo" target="_blank" rel="noopener" aria-label="Посмотреть отзывы в Telegram">
+          отзывы
+        </a>
+      </div>
     </div>
   </section>
 
@@ -389,7 +402,7 @@ h1, h2 {
   <section class="work">
     <header class="work__head">
       <h2 id="work-title">портфолио</h2>
-      <span class="work__hint" id="work-hint">2 проекта · свайпни →</span>
+      <span class="work__hint" id="work-hint">3 проекта · свайпни →</span>
     </header>
 
     <div class="work__carousel" id="workCarousel" aria-labelledby="work-title" aria-describedby="work-hint">
@@ -447,6 +460,21 @@ h1, h2 {
         </div>
         <p class="project__desc">Лендинг для игрового Minecraft-проекта.</p>
         <p class="project__scope">задача: коротко представить проект и провести к действию</p>
+        <span class="project__btn">
+          открыть проект
+        </span>
+      </a>
+
+      <a class="project" href="https://t.me/HoursStudio_bot" target="_blank" rel="noopener">
+        <div class="project__head">
+          <span class="project__name">
+            <i data-lucide="layout" style="width:18px;height:18px;stroke-width:2.5px"></i>
+            HoursStudio_bot
+          </span>
+          <span class="project__type">mini app design</span>
+        </div>
+        <p class="project__desc">Дизайн интерфейса для мини апки. 1.3к+ пользователей.</p>
+        <p class="project__scope">задача: сделать простой и удобный интерфейс</p>
         <span class="project__btn">
           открыть проект
         </span>
